@@ -68,3 +68,9 @@ git commit -m “nội dung thông báo “
 git checkout main
 
 git pull origin main
+
+
+----------------------Cách dùng Migration------------------------------
+Lỡ tay xoá CreaateDatabase trong migration thì làm sao
+Đây nè: Update-Database -TargetMigration "CreatedDatabase" 
+

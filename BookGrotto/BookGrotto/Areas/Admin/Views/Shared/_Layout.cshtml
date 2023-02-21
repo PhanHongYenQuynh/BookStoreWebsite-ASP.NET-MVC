@@ -289,17 +289,17 @@
                 $(this).bootstrapSwitch('state', $(this).prop('checked'));
             })
 
-        })
+        });
         // BS-Stepper Init
-        document.addEventListener('DOMContentLoaded', function () {
+        /*document.addEventListener('DOMContentLoaded', function () {
             window.stepper = new Stepper(document.querySelector('.bs-stepper'))
         })
 
         // DropzoneJS Demo Code Start
-        Dropzone.autoDiscover = false
+        Dropzone.autoDiscover = false*/
 
         // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-        var previewNode = document.querySelector("#template")
+        /*var previewNode = document.querySelector("#template")
         previewNode.id = ""
         var previewTemplate = previewNode.parentNode.innerHTML
         previewNode.parentNode.removeChild(previewNode)
@@ -335,18 +335,19 @@
         // Hide the total progress bar when nothing's uploading anymore
         myDropzone.on("queuecomplete", function (progress) {
             document.querySelector("#total-progress").style.opacity = "0"
-        })
+        })*/
 
         // Setup the buttons for all transfers
         // The "add files" button doesn't need to be setup because the config
         // `clickable` has already been specified.
-        document.querySelector("#actions .start").onclick = function () {
+       /* document.querySelector("#actions .start").onclick = function () {
             myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
         }
         document.querySelector("#actions .cancel").onclick = function () {
             myDropzone.removeAllFiles(true)
-        }
-          // DropzoneJS Demo Code End</script>
+        }*/
+          // DropzoneJS Demo Code End}
+    </script>
     <script src="~/Content/ckeditor/ckeditor.js"></script>
     <script src="~/Content/ckfinder/ckfinder.js"></script>
     @RenderSection("scripts", required: false)

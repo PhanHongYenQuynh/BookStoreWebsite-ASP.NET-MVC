@@ -23,10 +23,14 @@ namespace BookGrotto.Models.EF
         public string CustomerName { get; set; }
         [Required]
         public string Phone { get; set; }
+        [Required] 
+        public string Email { get;set; }
         [Required]
         public string Address { get; set; }
+
         public decimal TotalAmount { get; set; }
         public int Quantity { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public int TypePayment{ get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

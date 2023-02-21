@@ -183,9 +183,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302210722431_CreatedDatabase.cs" />
-    <Compile Include="Migrations\202302210722431_CreatedDatabase.designer.cs">
-      <DependentUpon>202302210722431_CreatedDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202302211130546_CreatedDatbase.cs" />
+    <Compile Include="Migrations\202302211130546_CreatedDatbase.designer.cs">
+      <DependentUpon>202302211130546_CreatedDatbase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3104,6 +3104,7 @@
     <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3169,8 +3170,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202302210722431_CreatedDatabase.resx">
-      <DependentUpon>202302210722431_CreatedDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202302211130546_CreatedDatbase.resx">
+      <DependentUpon>202302211130546_CreatedDatbase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

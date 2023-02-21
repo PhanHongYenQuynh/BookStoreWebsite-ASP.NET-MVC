@@ -326,7 +326,7 @@ C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Deb
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.CopyComplete
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.dll
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.pdb
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.CreatedDatabase.resources
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.GenerateResource.cache
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\CKFinder.dll
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\CKFinder.pdb
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.CreatedDatbase.resources
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.GenerateResource.cache

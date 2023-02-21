@@ -51,6 +51,12 @@
       <HintPath>Content\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -177,15 +183,29 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Common\Common.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302211130546_CreatedDatbase.cs" />
-    <Compile Include="Migrations\202302211130546_CreatedDatbase.designer.cs">
-      <DependentUpon>202302211130546_CreatedDatbase.cs</DependentUpon>
+    <Compile Include="Migrations\202302211306287_CreatedDatabase.cs" />
+    <Compile Include="Migrations\202302211306287_CreatedDatabase.designer.cs">
+      <DependentUpon>202302211306287_CreatedDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302211426075_UpdatePayment.cs" />
+    <Compile Include="Migrations\202302211426075_UpdatePayment.designer.cs">
+      <DependentUpon>202302211426075_UpdatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302211537353_UpdateOrder.cs" />
+    <Compile Include="Migrations\202302211537353_UpdateOrder.designer.cs">
+      <DependentUpon>202302211537353_UpdateOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302211601451_Updatekey32.cs" />
+    <Compile Include="Migrations\202302211601451_Updatekey32.designer.cs">
+      <DependentUpon>202302211601451_Updatekey32.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -2998,6 +3018,7 @@
     <Content Include="Content\ckfinder\skins\v1\skin.js" />
     <Content Include="Content\ckfinder\skins\v1\uipanel.css" />
     <Content Include="Content\ckfinder\translations.txt" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -3105,6 +3126,9 @@
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Partial_SanPham.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3170,8 +3194,17 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202302211130546_CreatedDatbase.resx">
-      <DependentUpon>202302211130546_CreatedDatbase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202302211306287_CreatedDatabase.resx">
+      <DependentUpon>202302211306287_CreatedDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302211426075_UpdatePayment.resx">
+      <DependentUpon>202302211426075_UpdatePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302211537353_UpdateOrder.resx">
+      <DependentUpon>202302211537353_UpdateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302211601451_Updatekey32.resx">
+      <DependentUpon>202302211601451_Updatekey32.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

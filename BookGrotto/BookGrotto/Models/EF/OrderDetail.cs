@@ -16,7 +16,6 @@ namespace BookGrotto.Models.EF
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int OrderId { get; set;}
-        [Column(Order = 1)]
         public int ProductId { get; set; }
         public decimal Pice { get; set; }
         public int Quantity { get; set; }

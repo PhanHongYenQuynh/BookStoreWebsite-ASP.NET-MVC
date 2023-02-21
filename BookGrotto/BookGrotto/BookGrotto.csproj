@@ -199,10 +199,6 @@
     <Compile Include="Migrations\202302211426075_UpdatePayment.designer.cs">
       <DependentUpon>202302211426075_UpdatePayment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302211537353_UpdateOrder.cs" />
-    <Compile Include="Migrations\202302211537353_UpdateOrder.designer.cs">
-      <DependentUpon>202302211537353_UpdateOrder.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202302211601451_Updatekey32.cs" />
     <Compile Include="Migrations\202302211601451_Updatekey32.designer.cs">
       <DependentUpon>202302211601451_Updatekey32.cs</DependentUpon>
@@ -3115,6 +3111,10 @@
     <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\News\Index.cshtml" />
     <Content Include="Areas\Admin\Views\News\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Partial_SanPham.cshtml" />
     <Content Include="Content\ckeditor\CHANGES.md" />
     <Content Include="Content\ckeditor\LICENSE.md" />
     <Content Include="Content\ckeditor\plugins\scayt\LICENSE.md" />
@@ -3125,10 +3125,6 @@
     <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\View.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Partial_SanPham.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3199,9 +3195,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302211426075_UpdatePayment.resx">
       <DependentUpon>202302211426075_UpdatePayment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302211537353_UpdateOrder.resx">
-      <DependentUpon>202302211537353_UpdateOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302211601451_Updatekey32.resx">
       <DependentUpon>202302211601451_Updatekey32.cs</DependentUpon>

@@ -20,6 +20,9 @@ namespace BookGrotto.Models.EF
         [Required]
         [StringLength(150)]
         public string Title { get; set; }
+        [Required]
+        [StringLength(150)]
+        public string Alias { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
         public string SeoTitle { get; set; }

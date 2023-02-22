@@ -184,6 +184,8 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -191,17 +193,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302211306287_CreatedDatabase.cs" />
-    <Compile Include="Migrations\202302211306287_CreatedDatabase.designer.cs">
-      <DependentUpon>202302211306287_CreatedDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302211426075_UpdatePayment.cs" />
-    <Compile Include="Migrations\202302211426075_UpdatePayment.designer.cs">
-      <DependentUpon>202302211426075_UpdatePayment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302211601451_Updatekey32.cs" />
-    <Compile Include="Migrations\202302211601451_Updatekey32.designer.cs">
-      <DependentUpon>202302211601451_Updatekey32.cs</DependentUpon>
+    <Compile Include="Migrations\202302220843153_UpdateProductCategory.cs" />
+    <Compile Include="Migrations\202302220843153_UpdateProductCategory.designer.cs">
+      <DependentUpon>202302220843153_UpdateProductCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3125,6 +3119,10 @@
     <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3190,14 +3188,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202302211306287_CreatedDatabase.resx">
-      <DependentUpon>202302211306287_CreatedDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302211426075_UpdatePayment.resx">
-      <DependentUpon>202302211426075_UpdatePayment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302211601451_Updatekey32.resx">
-      <DependentUpon>202302211601451_Updatekey32.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202302220843153_UpdateProductCategory.resx">
+      <DependentUpon>202302220843153_UpdateProductCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -217,7 +217,6 @@ C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Deb
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.dll
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.pdb
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\CKFinder.pdb
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.GenerateResource.cache
 \\Mac\Home\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\BookGrotto.dll.config
 \\Mac\Home\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\BookGrotto.dll
 \\Mac\Home\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\BookGrotto.pdb
@@ -341,7 +340,6 @@ C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\Pag
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\PagedList.Mvc.dll
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\PagedList.xml
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\PagedList.Mvc.xml
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.CreatedDatabase.resources
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdatePayment.resources
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.Updatekey32.resources
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\CKFinder.dll
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateProductCategory.resources
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.GenerateResource.cache

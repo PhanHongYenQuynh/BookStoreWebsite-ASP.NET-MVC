@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Security.Policy;
 
 namespace BookGrotto.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin, Staff")]
     public class NewsController : Controller
     {
         // GET: Admin/News

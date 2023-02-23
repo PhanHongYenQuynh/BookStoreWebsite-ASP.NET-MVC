@@ -341,5 +341,3 @@ C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\Pag
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\PagedList.xml
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\PagedList.Mvc.xml
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\CKFinder.dll
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateProductCategory.resources
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.GenerateResource.cache

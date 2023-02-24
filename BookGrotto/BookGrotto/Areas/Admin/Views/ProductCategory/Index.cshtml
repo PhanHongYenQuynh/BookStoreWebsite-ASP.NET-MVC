@@ -130,7 +130,7 @@
                     var conf = confirm('Bạn có muốn xóa bản ghi này không?');
                     if (conf === true) {
                         $.ajax({
-                            url: '/admin/news/deleteAll',
+                            url: '/admin/productcategory/deleteAll',
                             type: 'POST',
                             data: { ids: str },
                             success: function (rs) {
@@ -160,7 +160,7 @@
                 var conf = confirm('Bạn chắc chắn có muốn xoá ?');
                 if (conf == true) {
                     $.ajax({
-                        url: '/admin/new/delete',
+                        url: '/admin/productcategory/delete',
                         type: 'POST',
                         data: { id: id },
                         success: function (rs) {
@@ -177,7 +177,7 @@
                 var btn = $(this);
                 var id = btn.data("id");
                 $.ajax({
-                    url: '/admin/news/IsActive',
+                    url: '/admin/productcategory/IsActive',
                     type: 'POST',
                     data: { id: id },
                     success: function (rs) {

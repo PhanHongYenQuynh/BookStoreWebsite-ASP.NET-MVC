@@ -57,7 +57,7 @@
                                 <td>@item.Phone</td>
                                 <td>@BookGrotto.Common.Common.FormatNumber(item.TotalAmount, 0)</td>
                                 <td>@(item.TypePayment==1? "Chờ thanh toán": "Đã thanh toán")</td>
-                                <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                                <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>`
                                 <td>
                                     <a href="/admin/order/view/@item.Id" class="btn btn-sm btn-success">Chi tiết</a>
                                     <a href="#" class="btn btn-sm btn-danger btnCapNhat" data-id="@item.Id">Cập nhật</a>
@@ -79,7 +79,6 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            Footer
         </div>
         <!-- /.card-footer-->
     </div>
@@ -117,7 +116,7 @@
     <!-- /.modal-dialog -->
 </div>
 
-@section scripts{
+@*@section scripts{
     <script>
         $(document).ready(function () {
             $('body').or('click', '.btnCapNhat', function () { 
@@ -146,4 +145,4 @@
         });
 
     </script>
-} 
+} *@

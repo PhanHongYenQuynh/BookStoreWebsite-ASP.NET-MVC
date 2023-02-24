@@ -186,7 +186,7 @@
                 var conf = confirm('Bạn chắc chắn có muốn xoá ?');
                 if (conf == true) {
                     $.ajax({
-                        url: '/admin/new/delete',
+                        url: '/admin/news/delete',
                         type: 'POST',
                         data: { id: id },
                         success: function (rs) {

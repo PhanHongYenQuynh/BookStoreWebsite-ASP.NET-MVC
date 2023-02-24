@@ -70,14 +70,14 @@
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = 1;
+                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
                             var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
                                 <td>@i</td>
-                                <td><img src="@item.Image" width="50" /></td>
+                                <td><img src="@item.ProductImage.FirstOrDefault(x => x.IsDefault).Image" width="50" /></td>
                                 <td>@item.Title</td>
                                 <td>@item.ProductCategory.Title</td>
                                 <td>@item.Quantity</td>
@@ -87,7 +87,7 @@
                                     <a href='#' data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
                                 </td>
                                 <td>
-                                    <a href="/admin/news/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="/admin/products/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xoá</a>
                                 </td>
                             </tr>

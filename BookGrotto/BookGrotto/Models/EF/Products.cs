@@ -13,6 +13,11 @@ namespace BookGrotto.Models.EF
     [Table("tb_Product")]
     public class Product : CommonAbstract
     {
+        public Product()
+        {
+            this.ProductImage = new HashSet<ProductImage>();
+            this.OrderDetail = new HashSet<OrderDetail>();
+        }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -33,11 +38,13 @@ namespace BookGrotto.Models.EF
         public bool IsSale { get; set; }
         public bool IsFeature { get; set; }
         public bool IsHot { get; set; }
-        public int PoductCategoryId { get; set; }
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set; }
         public string SeoKeywords { get; set; }
         public bool IsActive { get; set; }
+        public int ProductCategoryId { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
+        public virtual ICollection<ProductImage> ProductImage { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }

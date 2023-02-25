@@ -9,6 +9,7 @@ using System.Security.Policy;
 
 namespace BookGrotto.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin, Staff")]
     public class OrderController : Controller
     {
 

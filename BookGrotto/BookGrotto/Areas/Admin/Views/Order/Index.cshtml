@@ -12,7 +12,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin" class="nav-link">Trang chủ</a>
+            <a href="/admin/home" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/admin/order" class="nav-link">Danh sách đơn hàng</a>
@@ -60,7 +60,7 @@
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>`
                                 <td>
                                     <a href="/admin/order/view/@item.Id" class="btn btn-sm btn-success">Chi tiết</a>
-                                    <a href="#" class="btn btn-sm btn-danger btnCapNhat" data-id="@item.Id">Cập nhật</a>
+                                    <a href="#" class="btn btn-sm btn-primary btnCapNhat" data-id="@item.Id">Cập nhật</a>
                                 </td>
                             </tr>
                             i++;
@@ -108,7 +108,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary id="btnLuu">Lưu lại</button>
+                <button type="button" class="btn btn-primary" id="btnLuu">Lưu lại</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -116,18 +116,18 @@
     <!-- /.modal-dialog -->
 </div>
 
-@*@section scripts{
+@section scripts{
     <script>
         $(document).ready(function () {
-            $('body').or('click', '.btnCapNhat', function () { 
+            $('body').on('click', '.btnCapNhat', function () { 
                 var id = $(this).data("id");
                 $('#txtOrderId').val(id);
                 $('#modal-default').modal('show');
             });
 
-            $('body').or('click', '#btnLuu', function () {
-                var id = $('#txtOrderId').val();
-                var tt = $('#ddTrangThai').val();
+            $('body').on('click', '#btnLuu', function () {
+                var id = $("#txtOrderId").val();
+                var tt = $("#ddTrangThai").val();
                 $.ajax({
                     url: '/admin/order/UpdateTT',
                     type: 'POST',
@@ -136,13 +136,11 @@
                         if (res.Success) {
                             location.reload();
                         }
-
                     }
-
                 });
             });
 
         });
 
     </script>
-} *@
+} 

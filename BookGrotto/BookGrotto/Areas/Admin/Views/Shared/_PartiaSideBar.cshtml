@@ -28,9 +28,10 @@
                 </a>
 
             </li>
+
             <li class="nav-item">
                 <a href="/admin/news" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-newspaper"></i>
                     <p>
                         Tin tức
 
@@ -39,7 +40,7 @@
             </li>
             <li class="nav-item">
                 <a href="/admin/posts" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-paint-brush"></i>
                     <p>
                         Bài viết
 
@@ -48,28 +49,20 @@
             </li>
             <li class="nav-item">
                 <a href="/admin/order" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-pallet"></i>
                     <p>
                         Đơn hàng
 
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="/admin/pots" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                        Quảng cáo
 
-                    </p>
-                </a>
-            </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa-store"></i>
                     <p>
                         Quản lý sản phẩm
-                        <i class="right fas fa-angle-left"></i>
+                        <i class="right fas fa-paperclip"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
@@ -88,9 +81,27 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Cài đặt</p>
+                <a href="/admin/role" class="nav-link">
+                    <i class="nav-icon fas fa-people-arrows"></i>
+                    <p>
+                        Phân quyền
+
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/account" class="nav-link">
+                    <i class="nav-icon fas fa-user-alt "></i>
+                    <p>
+                       Tài khoản
+
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:document.getElementById('logOffForm').submit()" class="nav-link">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <p>Đăng xuất</p>
                 </a>
             </li>
         </ul>
@@ -98,3 +109,13 @@
     <!-- /.sidebar-menu -->
 </div>
 <!-- /.sidebar -->
+@if (Request.IsAuthenticated)
+ {
+    <div style="display:none">
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @id = "logOffForm" }))
+        {
+             @Html.AntiForgeryToken();
+        }
+    </div>
+   
+ }

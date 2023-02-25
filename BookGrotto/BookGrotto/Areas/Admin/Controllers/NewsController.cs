@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace BookGrotto.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin, Staff")]
     public class NewsController : Controller
     {
         // GET: Admin/News

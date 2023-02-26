@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Mô tả</label>
-                                            @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @placeholder = "Mã mã phẩm" })
+                                            @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @placeholder = "Mô tả phẩm" })
                                             @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
@@ -115,7 +115,7 @@
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Giá khuyến mãi</label>
-                                                    <input type="text" name="demoPriceSale" id="demoPriceSale" value="0" class="form-control auto">
+                                                    <input type="text" name="demoPriceScale" id="demoPriceScale" value="0" class="form-control auto">
                                                     @Html.HiddenFor(x => x.PriceScale, new { @class = "form-control", @placeholder = "Khuyến mãi" })
                                                     @Html.ValidationMessageFor(x => x.PriceScale, null, new { @class = "text-danger" })
                                                 </div>
@@ -242,13 +242,14 @@
                 $('#Price').val(demoGet);
                 $('#Price').autoNumeric('set', demoGet);
             });
-            $('#demoPriceSale').bind('blur focusout keypress keyup', function () {
-                var demoGet = $('#demoPriceSale').autoNumeric('get');
-                $('#PriceSale').val(demoGet);
-                $('#PriceSale').autoNumeric('set', demoGet);
+            $('#demoPriceScale').bind('blur focusout keypress keyup', function () {
+                var demoGet = $('#demoPriceScale').autoNumeric('get');
+                $('#PriceScale').val(demoGet);
+                $('#PriceScale').autoNumeric('set', demoGet);
             });
             CKEDITOR.replace('txtDetail', {
-                customConfig: '/content/ckeditor/config.js',
+                customConfig: "~/Content/ckeditor/config.js",
+
                 extraAllowedContent: 'span',
             });
 

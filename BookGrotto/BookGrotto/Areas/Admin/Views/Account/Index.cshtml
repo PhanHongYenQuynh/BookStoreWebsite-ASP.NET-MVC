@@ -56,8 +56,8 @@
                                 <td>@item.FullName</td>
                                 <td>@item.Email</td>
                                 <td>
-                                    <a href="/admin/account/edit/@item.UserName" class="btn btn-sm btn-primary">Cập nhật</a>
-                                    <a href="#" data-user="@item.UserName" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                    <a href="/admin/account/edit/@item.FullName" class="btn btn-sm btn-primary">Cập nhật</a>
+                                    <a href="/admin/account/DeleteConfirmed/@item.UserName" class="btn btn-sm btn-danger">Xóa</a>
                                 </td>
                             </tr>
                             i++;

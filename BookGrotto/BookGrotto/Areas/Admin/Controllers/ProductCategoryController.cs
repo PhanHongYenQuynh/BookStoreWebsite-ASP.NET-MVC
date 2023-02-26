@@ -41,5 +41,34 @@ namespace BookGrotto.Areas.Admin.Controllers
             return View(model);
             return View();
         }
+
+        public ActionResult Edit(int id)
+        {
+            var item = db.ProductCategories.Find(id);
+            return View(item);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ProductCategory model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.ProductCategories.Attach(model);
+                model.ModifiedDate = DateTime.Now;
+                model.Alias = BookGrotto.Models.Common.Filter.FilterChar(model.Title);
+                /*Cho phép sữa*/
+                db.Entry(model).Property(x => x.Title).IsModified = true;
+                db.Entry(model).Property(x => x.Alias).IsModified = true;
+                db.Entry(model).Property(x => x.SeoDescription).IsModified = true;
+                db.Entry(model).Property(x => x.SeoKeywords).IsModified = true;
+                db.Entry(model).Property(x => x.SeoTitle).IsModified = true;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+       
     }
 }

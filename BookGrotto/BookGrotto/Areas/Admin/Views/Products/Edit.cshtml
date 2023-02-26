@@ -224,10 +224,10 @@
                 $('#Price').val(demoGet);
                 $('#Price').autoNumeric('set', demoGet);
             });
-            $('#demoPriceSale').bind('blur focusout keypress keyup', function () {
-                var demoGet = $('#demoPriceSale').autoNumeric('get');
-                $('#PriceSale').val(demoGet);
-                $('#PriceSale').autoNumeric('set', demoGet);
+            $('#demoPriceScale').bind('blur focusout keypress keyup', function () {
+                var demoGet = $('#demoPriceScale').autoNumeric('get');
+                $('#PriceScale').val(demoGet);
+                $('#PriceScale').autoNumeric('set', demoGet);
             });
             CKEDITOR.replace('txtDetail', {
                 customConfig: '/content/ckeditor/config.js',

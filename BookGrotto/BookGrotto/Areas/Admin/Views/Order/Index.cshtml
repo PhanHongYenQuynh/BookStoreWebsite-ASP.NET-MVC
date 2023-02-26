@@ -12,22 +12,20 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/home" class="nav-link">Trang chủ</a>
+            <a href="/admin/home" class="nav-link"><font color="white">Trang chủ</font></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/order" class="nav-link">Danh sách đơn hàng</a>
+            <a href="/admin/order" class="nav-link"><font color="white">Danh sách đơn hàng</font></a>
         </li>
     </ul>
 }
 <!-- Content Header (Page header) -->
 <!-- Main content -->
 <section class="content">
-
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Danh sách đơn hàng</h3>
-
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -43,7 +41,6 @@
                         <th></th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @if (Model != null && Model.Any())
                     {

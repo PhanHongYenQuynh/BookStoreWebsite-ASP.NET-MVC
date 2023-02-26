@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace BookGrotto.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin, Staff")]
+    [Authorize(Roles = "Admin,Staff")]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -34,6 +34,7 @@ namespace BookGrotto.Areas.Admin.Controllers
             ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "Title");
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(Product model, List<string> Images, List<int> rDefault)
@@ -53,7 +54,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                                 Image = Images[i],
                                 IsDefault = true
                             });
-                        }    
+                        }
                         else
                         {
                             model.ProductImage.Add(new ProductImage
@@ -62,16 +63,15 @@ namespace BookGrotto.Areas.Admin.Controllers
                                 Image = Images[i],
                                 IsDefault = false
                             });
-                        }    
-
+                        }
                     }
-                }    
+                }
                 model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
                 if (string.IsNullOrEmpty(model.SeoTitle))
                 {
                     model.SeoTitle = model.Title;
-                }    
+                }
                 if (string.IsNullOrEmpty(model.Alias))
                     model.Alias = BookGrotto.Models.Common.Filter.FilterChar(model.Title);
                 db.Products.Add(model);
@@ -81,19 +81,21 @@ namespace BookGrotto.Areas.Admin.Controllers
             ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "Title");
             return View(model);
         }
+
+
         public ActionResult Edit(int id)
         {
             ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "Title");
             var item = db.Products.Find(id);
             return View(item);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Product model)
         {
             if (ModelState.IsValid)
             {
-                model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = BookGrotto.Models.Common.Filter.FilterChar(model.Title);
                 db.Products.Attach(model);
@@ -103,6 +105,7 @@ namespace BookGrotto.Areas.Admin.Controllers
             }
             return View(model);
         }
+
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -112,6 +115,50 @@ namespace BookGrotto.Areas.Admin.Controllers
                 db.Products.Remove(item);
                 db.SaveChanges();
                 return Json(new { success = true });
+            }
+
+            return Json(new { success = false });
+        }
+
+        [HttpPost]
+        public ActionResult IsActive(int id)
+        {
+            var item = db.Products.Find(id);
+            if (item != null)
+            {
+                item.IsActive = !item.IsActive;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, isAcive = item.IsActive });
+            }
+
+            return Json(new { success = false });
+        }
+        [HttpPost]
+        public ActionResult IsHome(int id)
+        {
+            var item = db.Products.Find(id);
+            if (item != null)
+            {
+                item.IsHome = !item.IsHome;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, IsHome = item.IsHome });
+            }
+
+            return Json(new { success = false });
+        }
+
+        [HttpPost]
+        public ActionResult IsSale(int id)
+        {
+            var item = db.Products.Find(id);
+            if (item != null)
+            {
+                item.IsSale = !item.IsSale;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, IsSale = item.IsSale });
             }
 
             return Json(new { success = false });

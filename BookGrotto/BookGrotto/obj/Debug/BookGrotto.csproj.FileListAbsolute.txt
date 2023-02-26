@@ -343,3 +343,4 @@ C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Deb
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.CopyComplete
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.dll
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.pdb
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateProduct.resources

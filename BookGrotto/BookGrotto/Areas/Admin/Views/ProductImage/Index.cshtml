@@ -13,6 +13,7 @@
     }
 
         .glImage li {
+            /*flex-direction:*/
             display: inline-block;
             position: relative;
         }
@@ -25,6 +26,7 @@
         text-align: center;
     }
 </style>
+<!-- Main content -->
 <section class="content">
 
     <!-- Default box -->
@@ -33,9 +35,10 @@
             <h3 class="card-title">Ảnh sản phẩm</h3>
 
             <div class="card-tools">
-                <button type="button" class="btn btn-danger" title="xóa tất cả">
+                <button type="button" class="btn btn-danger" title="Collapse">
                     Xóa hết
                 </button>
+
                 <input type="button" value="Tải ảnh" class="btn btn-success" onclick="BrowseServer('txtImage');" />
             </div>
         </div>
@@ -48,8 +51,15 @@
                         <li id="trow_@item.Id">
                             <img src="@item.Image" width="200" />
                             <div class="box-btn">
-                                <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete"> <i class="fa fa-trash"></i></a>
-                                <a href="#" data-id="@item.Id" class="btn btn-sm btn-success btnDefault"> <i class="fa fa-check"></i></a>
+                                <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete"><i class="fa fa-trash"></i></a>
+                                @if (item.IsDefault)
+                                {
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-success btnDefault"><i class="fa fa-check"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-warning btnDefault">X</a>
+                                }
                             </div>
                         </li>
                     }
@@ -71,11 +81,13 @@
     function BrowseServer(field) {
         var finder = new CKFinder();
         finder.selectActionFunction = function (fileUrl) {
+            debugger;
             AddImage(@ViewBag.productId, fileUrl);
         };
         finder.popup();
     }
     function AddImage(id, url) {
+        debugger;
         $.ajax({
             url: '/admin/productimage/AddImage',
             type: 'POST',
@@ -90,7 +102,7 @@
     $(document).ready(function () {
         $('body').on('click', '.btnDelete', function () {
             var id = $(this).data('id');
-            var conf = confirm('Bạn có muốn xóa ảnh này không?');
+            var conf = confirm('ban có muốn xóa ảnh này không?');
             if (conf === true) {
                 $.ajax({
                     url: '/admin/productimage/delete',

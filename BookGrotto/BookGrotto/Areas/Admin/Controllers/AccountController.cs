@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace BookGrotto.Areas.Admin.Controllers
 {
@@ -57,6 +59,7 @@ namespace BookGrotto.Areas.Admin.Controllers
         // GET: Admin/Account
         public ActionResult Index()
         {
+
             var items = db.Users.ToList();
             return View(items);
         }
@@ -178,7 +181,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                 ModelState.AddModelError("", error);
             }
         }
+        
 
-      
     }
 }

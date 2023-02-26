@@ -7,18 +7,18 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace BookGrotto.Areas.Admin.Controllers
-{
-  
+{ 
     public class ProductImageController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        // GET: Admin/ProductImages
+        // GET: Admin/ProductImage
         public ActionResult Index(int id)
         {
             ViewBag.ProductId = id;
             var items = db.ProductImages.Where(x => x.ProductId == id).ToList();
             return View(items);
         }
+
         [HttpPost]
         public ActionResult AddImage(int productId, string url)
         {

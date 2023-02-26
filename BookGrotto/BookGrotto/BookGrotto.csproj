@@ -3151,6 +3151,7 @@
     <Content Include="Areas\Admin\Views\Statistical\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SettingSystem\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SettingSystem\Partial_Setting.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

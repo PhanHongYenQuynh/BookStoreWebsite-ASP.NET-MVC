@@ -12,13 +12,13 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin" class="nav-link">Trang chủ</a>
+            <a href="/admin" class="nav-link"><font color="white">Trang chủ</font></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/products" class="nav-link">Sản phẩm</a>
+            <a href="/admin/products" class="nav-link"><font color="white">Sản phẩm</font></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Cập nhật</a>
+            <a href="#" class="nav-link"><font color="white">Cập nhật</font></a>
         </li>
     </ul>
 }
@@ -62,7 +62,7 @@
                             <div class="card-header p-2">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Thông tin chung</a></li>
-                                    @*<li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Hình ảnh</a></li>*@
+                                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Hình ảnh</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">SEO</a></li>
                                 </ul>
                             </div><!-- /.card-header -->
@@ -163,8 +163,10 @@
                                         </div>
                                     </div>
                                     <!-- /.tab-pane -->
+                                    
 
 
+                                    <!-- /.tab-pane -->
                                     <div class="tab-pane" id="settings">
                                         <form class="form-horizontal">
                                             <div class="form-group row">
@@ -191,9 +193,9 @@
 
                                         </form>
                                     </div>
-                                    <!-- /.tab-pane -->
                                 </div>
                                 <!-- /.tab-content -->
+                                
                             </div><!-- /.card-body -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Lưu Lại</button>
@@ -202,6 +204,7 @@
                         </div> <!-- /.card -->
                     }
                 </div>
+                
             </div>
         </div>
         <!-- /.card-body -->
@@ -233,8 +236,7 @@
                 customConfig: '/content/ckeditor/config.js',
                 extraAllowedContent: 'span',
             });
-
-
+           
         });
 
     </script>

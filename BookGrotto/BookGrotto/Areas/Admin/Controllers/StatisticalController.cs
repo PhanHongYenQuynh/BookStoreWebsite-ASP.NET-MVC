@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace BookGrotto.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Staff")]
     public class StatisticalController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

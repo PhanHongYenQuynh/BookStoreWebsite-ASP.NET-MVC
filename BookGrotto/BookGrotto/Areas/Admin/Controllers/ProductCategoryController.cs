@@ -69,6 +69,39 @@ namespace BookGrotto.Areas.Admin.Controllers
             return View(model);
         }
 
-       
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var item = db.ProductCategories.Find(id);
+            if (item != null)
+            {
+                db.ProductCategories.Remove(item);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false });
+        }
+        
+        [HttpPost]
+        public ActionResult DeleteAll(string ids)
+        {
+            if (!string.IsNullOrEmpty(ids))
+            {
+                var items = ids.Split(',');
+                if (items != null && items.Any())
+                {
+                    foreach (var item in items)
+                    {
+                        var obj = db.ProductCategories.Find(Convert.ToInt32(item));
+                        db.ProductCategories.Remove(obj);
+                        db.SaveChanges();
+                    }
+                }
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
     }
+
 }

@@ -1,6 +1,6 @@
 ﻿@model BookGrotto.Models.CreateAccountViewModel
 @{ 
-    ViewBag.Title = "Thêm tài khoản";
+    ViewBag.Title = "Danh sách tài khoản";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,10 +12,10 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/home" class="nav-link">Trang chủ</a>
+            <a href="/admin/home" class="nav-link"><font color="white">Trang chủ</font></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/account" class="nav-link">@ViewBag.Title</a>
+            <a href="/admin/account" class="nav-link"><font color="white">@ViewBag.Title</font></a>
         </li>
     </ul>
 }

@@ -23,7 +23,7 @@ namespace BookGrotto.Models.EF
         public string Title { get; set; }
         public string Alias { get; set; }
         public string Description { get; set; }
-       
+
         public string SeoTitle { get; set; }
         [StringLength(250)]
         public string SeoDescription { get; set; }

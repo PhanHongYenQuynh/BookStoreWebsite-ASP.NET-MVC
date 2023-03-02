@@ -1,4 +1,5 @@
 ﻿using BookGrotto.Models;
+using BookGrotto.Models.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,27 +11,36 @@ namespace BookGrotto.Controllers
 {
     public class ShoppingCartController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: ShoppingCart
         public ActionResult Index()
         {
-            
+            ShoppingCart cart = (ShoppingCart)Session["cart"];
+            if (cart != null && cart.Items.Any())
+            {
+                ViewBag.CheckCart = cart;
+            }
             return View();
         }
 
         public ActionResult CheckOut()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 ViewBag.CheckCart=cart;
             }
+            return View();
+        }
+        public ActionResult CheckOutSuccess()
+        {
             return View();
         }
 
         public ActionResult Partial_Item_ThanhToan()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 return PartialView(cart.Items);
             }
@@ -39,7 +49,7 @@ namespace BookGrotto.Controllers
         public ActionResult Partial_Item_Cart()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 return PartialView(cart.Items);
             }
@@ -54,6 +64,48 @@ namespace BookGrotto.Controllers
             }
             return Json(new { Count = 0 },JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Partial_CheckOut()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOut(OrderViewModel req)
+        {
+            var code = new { Success = false, Code = -1 };
+            if (ModelState.IsValid)
+            {
+                ShoppingCart cart = (ShoppingCart)Session["cart"];
+                if (cart != null)
+                {
+                    Order order = new Order();
+                    order.CustomerName = req.CustomerName;
+                    order.Phone= req.Phone;
+                    order.Address= req.Address;
+                    order.Email= req.Email;
+                    cart.Items.ForEach(x => order.OrderDetails.Add(new OrderDetail
+                    {
+                        ProductId = x.ProductId,
+                        Quantity= x.Quantity,
+                        Price= x.Price,
+                    }));
+                    order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity));
+                    order.TypePayment = req.TypePayment;
+                    order.CreatedDate = DateTime.Now;
+                    order.ModifiedDate = DateTime.Now;
+                    order.CreatedBy = req.Phone;
+                    Random rd= new Random();
+                    order.Code= "DH" + rd.Next(0,9) + rd.Next(0,9) + rd.Next(0, 9) + rd.Next(0, 9);
+                    db.Orders.Add(order);
+                    db.SaveChanges();
+                    cart.ClearCart();
+                    return RedirectToAction("CheckOutSuccess");
+                }
+            }
+            return Json(code);
+        }
+
         [HttpPost]
         public ActionResult AddToCart(int id , int quantity)
         {

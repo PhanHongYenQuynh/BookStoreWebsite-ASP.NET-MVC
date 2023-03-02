@@ -6,9 +6,6 @@
     <title>@ViewBag.Title - BookGrotto</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <!DOCTYPE html>
-    <html>
-    <head>
         <title>Colo Shop</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +16,8 @@
         <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
         <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
         <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/animate.css">
-        <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
+
+        @*@RenderSection("css", required: false)*@
         <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/responsive.css">
         <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
         @*@Styles.Render("~/Content/css")*@
@@ -103,9 +101,9 @@
                                         <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                                         <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                         <li class="checkout">
-                                            <a href="#">
+                                            <a href="/gio-hang">
                                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                <span id="checkout_items" class="checkout_items">2</span>
+                                                <span id="checkout_items" class="checkout_items">0</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -241,6 +239,7 @@
         <script src="~/Content/assets/js/custom.js"></script>
         <script src="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
         @*@Scripts.Render("~/bundles/bootstrap")*@
+        <script src="~/Scripts/jsShopping.js"></script>
         @RenderSection("scripts", required: false)
     </body>
 </html>

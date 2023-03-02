@@ -39,7 +39,6 @@ namespace BookGrotto.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View(model);
-            return View();
         }
 
         public ActionResult Edit(int id)

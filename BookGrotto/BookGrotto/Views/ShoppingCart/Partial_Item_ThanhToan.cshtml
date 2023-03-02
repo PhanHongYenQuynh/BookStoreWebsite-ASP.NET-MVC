@@ -1,0 +1,31 @@
+﻿
+@model IEnumerable<BookGrotto.Models.ShoppingCartItem>
+@using BookGrotto.Common
+
+@if (Model != null && Model.Any())
+{
+    <h3>Giỏ Hàng <span style="float:right; position:relative"><small>@Model.Count()</small></span></h3>
+    var TongTien = decimal.Zero;
+    <div style="border:1px solid #808080">
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                TongTien += item.TotalPrice;
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@Common.FormatNumber(item.Price, 0)</td>
+                </tr>
+            }
+            <tr>
+                <td>Tổng Tiền</td>
+                <td>@Common.FormatNumber(TongTien, 0)</td>
+            </tr>
+        </table>
+    </div>
+    
+
+}
+else
+{
+
+}

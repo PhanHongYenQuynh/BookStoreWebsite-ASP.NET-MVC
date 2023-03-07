@@ -812,3 +812,6 @@ C:\Users\Admin\Desktop\test\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\o
 C:\Users\Admin\Desktop\test\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.CopyComplete
 C:\Users\Admin\Desktop\test\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.dll
 C:\Users\Admin\Desktop\test\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.pdb
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\Dapper.dll
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\Dapper.xml
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.Update.resources

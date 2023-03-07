@@ -53,19 +53,22 @@
             </div>
         </div>
         <div class="card-body">
-            @*<div class="row">
-                    <div class="col-6">
-                        @using (Html.BeginForm("index", "News", FormMethod.Get, new { }))
+            <div class="row">
+                <div class="col-6">
+                    <form>
+                        @using (Html.BeginForm("index", "Products", FormMethod.Get, new { }))
                         {
                             <div class="input-group input-group-sm">
-                                @Html.TextBox("Searchtext", new { @class = "form-control" })
+                                @Html.TextBox("Searchtext")
+                                @*<input type="text" name="searchText" class="form-control">*@
                                 <span class="input-group-append">
-                                    <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                                    <button type="submit" class="btn btn-info btn-flat">Tìm Kiếm</button>
                                 </span>
                             </div>
                         }
-                    </div>
-                </div>*@
+                    </form>
+                </div>
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>

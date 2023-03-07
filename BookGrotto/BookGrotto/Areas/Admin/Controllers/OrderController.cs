@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Security.Policy;
+using BookGrotto.Models.EF;
 
 namespace BookGrotto.Areas.Admin.Controllers
 {
@@ -15,19 +16,23 @@ namespace BookGrotto.Areas.Admin.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admin/Order
-        public ActionResult Index(int? page)
+        public ActionResult Index(string Searchtext, int? page)
         {
-            var items = db.Orders.OrderByDescending(x => x.CreatedDate).ToList();
-
-            if(page == null)
+            IEnumerable<Order> items = db.Orders.OrderByDescending(x => x.Id);
+            var pageSize = 5;
+            if (page == null)
             {
                 page = 1;
             }
-            var pageNumber = page ?? 1;
-            var pageSize = 10;
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                items = items.Where(x => x.Code.Contains(Searchtext) || x.CustomerName.Contains(Searchtext) || x.Phone.Contains(Searchtext));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
             ViewBag.PageSize = pageSize;
-            ViewBag.Page = pageNumber;
-            return View(items.ToPagedList(pageNumber, pageSize));
+            ViewBag.Page = page;
+            return View(items);
         }
 
         public ActionResult View(int id)

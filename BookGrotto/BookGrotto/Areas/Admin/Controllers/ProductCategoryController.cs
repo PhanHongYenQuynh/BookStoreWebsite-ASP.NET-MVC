@@ -1,10 +1,12 @@
 ﻿using BookGrotto.Models;
 using BookGrotto.Models.EF;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace BookGrotto.Areas.Admin.Controllers
 {
@@ -13,10 +15,18 @@ namespace BookGrotto.Areas.Admin.Controllers
     {
         // GET: Admin/ProductCategory
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var items = db.ProductCategories;
-
+            IEnumerable<ProductCategory> items = db.ProductCategories.OrderByDescending(x => x.Id);
+            var pageSize = 5;
+            if (page == null)
+            {
+                page = 1;
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
             return View(items);
         }
 

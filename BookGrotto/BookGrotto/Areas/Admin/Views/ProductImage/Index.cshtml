@@ -58,7 +58,7 @@
                                 }
                                 else
                                 {
-                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-warning btnDefault">X</a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-warning btnDefault"><i class="fa fa-times"></i></a>
                                 }
                             </div>
                         </li>
@@ -81,13 +81,11 @@
     function BrowseServer(field) {
         var finder = new CKFinder();
         finder.selectActionFunction = function (fileUrl) {
-            debugger;
             AddImage(@ViewBag.productId, fileUrl);
         };
         finder.popup();
     }
     function AddImage(id, url) {
-        debugger;
         $.ajax({
             url: '/admin/productimage/AddImage',
             type: 'POST',
@@ -115,6 +113,21 @@
                     }
                 });
             }
+        });
+    });
+    $(document).ready(function () {
+        $('body').on('click', '.btnDefault', function () {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '/admin/productimage/default',
+                type: 'POST',
+                data: { id: id },
+                success: function (rs) {
+                    if (rs.SuccesS) {
+                        window.location.reload();
+                    }
+                }
+            });
         });
     });
 </script>

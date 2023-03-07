@@ -39,6 +39,22 @@ namespace BookGrotto.Areas.Admin.Controllers
             db.SaveChanges();
             return Json(new { success = true });
         }
+        [HttpPost]
+        public ActionResult Default(int id)
+        {
+            var item = db.ProductImages.Find(id);
+            if (item.IsDefault)
+            {
+                item.IsDefault = false;
+            }   
+            else
+            {
+                item.IsDefault = true;
+            }
+
+            db.SaveChanges();
+            return Json(new { SuccesS = true });
+        }
 
     }
 }

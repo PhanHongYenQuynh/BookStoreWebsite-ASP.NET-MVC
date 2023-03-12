@@ -1,9 +1,12 @@
 ﻿using BookGrotto.Models;
+using BookGrotto.Models.EF;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace BookGrotto.Controllers
 {
@@ -11,9 +14,44 @@ namespace BookGrotto.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string Searchtext, int? page)
         {
-            var items = db.Products.ToList();  
+            IEnumerable<Product> items = db.Products.OrderByDescending(x => x.Id);
+            var pageSize = 12;
+            if (page == null)
+            {
+                page = 1;
+            }
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                char[] charArray = Searchtext.ToCharArray();
+                bool foundSpace = true;
+                //sử dụng vòng lặp for lặp từng phần tử trong mảng
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    //sử dụng phương thức IsLetter() để kiểm tra từng phần tử có phải là một chữ cái
+                    if (Char.IsLetter(charArray[i]))
+                    {
+                        if (foundSpace)
+                        {
+                            //nếu phải thì sử dụng phương thức ToUpper() để in hoa ký tự đầu
+                            charArray[i] = Char.ToUpper(charArray[i]);
+                            foundSpace = false;
+                        }
+                    }
+                    else
+                    {
+                        foundSpace = true;
+                    }
+                }
+                //chuyển đổi kiểu mảng char thàng string
+                Searchtext = new string(charArray);
+                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
             return View(items);
         }
         public ActionResult Detail(string alias, int id)

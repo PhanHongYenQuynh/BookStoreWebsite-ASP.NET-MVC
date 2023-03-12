@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
@@ -245,6 +246,10 @@
     <Compile Include="Models\SettingSystemViewModel.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\ThongKeViewModel.cs" />
+    <Compile Include="Momo\MomoSecurity.cs" />
+    <Compile Include="Momo\HandleMomoResponse.cs" />
+    <Compile Include="Momo\PaymentRequest.cs" />
+    <Compile Include="Momo\PaymentResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -2146,6 +2151,7 @@
     <Content Include="Content\admin\plugins\uplot\uPlot.iife.js" />
     <Content Include="Content\admin\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\admin\plugins\uplot\uPlot.min.css" />
+    <Content Include="Content\assets\images\1.jpg" />
     <Content Include="Content\assets\images\banner_1.jpg" />
     <Content Include="Content\assets\images\banner_2.jpg" />
     <Content Include="Content\assets\images\banner_3.jpg" />
@@ -3343,6 +3349,9 @@
     <Content Include="Views\News\Partial_News_Home.cshtml" />
     <Content Include="Views\Home\Partial_Subcrise.cshtml" />
     <Content Include="Views\Home\Refesh.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Posts\Detail.cshtml" />
+    <Content Include="Views\Posts\Partial_Posts_Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

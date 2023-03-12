@@ -16,7 +16,7 @@ namespace BookGrotto.Areas.Admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index(string Searchtext, int? page)
         {
-            var pageSize = 5;
+            var pageSize = 10;
             if (page == null)
             {
                 page = 1;
@@ -24,6 +24,7 @@ namespace BookGrotto.Areas.Admin.Controllers
             IEnumerable<News> items = db.News.OrderByDescending(x => x.Id);
             if (!string.IsNullOrEmpty(Searchtext))
             {
+                
                 items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext));
             }
             var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
@@ -44,7 +45,7 @@ namespace BookGrotto.Areas.Admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 // cái này chừng nào đủ danh mục thì sẽ thay đổi sau
-                model.CategoryId = 1;
+                model.CategoryId = 1005;
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = BookGrotto.Models.Common.Filter.FilterChar(model.Title);
                 db.News.Add(model);

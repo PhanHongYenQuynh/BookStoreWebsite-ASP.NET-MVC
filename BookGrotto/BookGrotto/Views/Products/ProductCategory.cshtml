@@ -13,7 +13,7 @@
 
             <div class="breadcrumbs d-flex flex-row align-items-center">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="san-pham">Sản Phẩm</a></li>
                     <li class="active">
                         <a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>@ViewBag.CateName</a>
                     </li>
@@ -66,32 +66,35 @@
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="sorting_type">
                                             <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default Sorting</span></li>
-                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
                                             <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Product Name</span></li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <span>Show</span>
-                                        <span class="num_sorting_text">6</span>
-                                        <i class="fa fa-angle-down"></i>
-                                        <ul class="sorting_num">
-                                            <li class="num_sorting_btn"><span>6</span></li>
-                                            <li class="num_sorting_btn"><span>12</span></li>
-                                            <li class="num_sorting_btn"><span>24</span></li>
-                                        </ul>
-                                    </li>
+                                    @*<li>
+                    <span>Show</span>
+                    <span class="num_sorting_text">6</span>
+                    <i class="fa fa-angle-down"></i>
+                    <ul class="sorting_num">
+                        <li class="num_sorting_btn"><span>6</span></li>
+                        <li class="num_sorting_btn"><span>12</span></li>
+                        <li class="num_sorting_btn"><span>24</span></li>
+                    </ul>
+                </li>*@
                                 </ul>
                                 <div class="pages d-flex flex-row align-items-center">
-                                    <div class="page_current">
-                                        <span>1</span>
-                                        <ul class="page_selection">
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="page_total"><span>of</span> 3</div>
-                                    <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                                    <form>
+                                        @using (Html.BeginForm("index", "News", FormMethod.Get, new { }))
+                                        {
+                                            <div class="input-group">
+                                                @Html.TextBox("Searchtext")
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-lg btn-primary">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </form>
                                 </div>
 
                             </div>
@@ -122,18 +125,18 @@
                                                 {
                                                     <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
                                                 }
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="/chi-tiet/@item.Alias-p@(item.Id)">@item.Title</a></h6>
-                                                @if (item.PriceScale > 0)
-                                                {
-                                                    <div class="product_price">@BookGrotto.Common.Common.FormatNumber(item.PriceScale, 0)<span>@BookGrotto.Common.Common.FormatNumber(item.Price, 0)</span></div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="product_price">@BookGrotto.Common.Common.FormatNumber(item.Price, 0)</div>
-                                                    <div style="display:none;" class="in_product_price"> @item.Price</div>
-                                                }
-                                            </div>
+                                                <div class="product_info">
+                                                    <h6 class="product_name"><a href="/chi-tiet/@item.Alias-p@(item.Id)">@item.Title</a></h6>
+                                                    @if (item.PriceScale > 0)
+                                                    {
+                                                        <div class="product_price">@BookGrotto.Common.Common.FormatNumber(item.PriceScale, 0)<span>@BookGrotto.Common.Common.FormatNumber(item.Price, 0)</span></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="product_price">@BookGrotto.Common.Common.FormatNumber(item.Price, 0)</div>
+                                                        <div style="display:none;" class="in_product_price"> @item.Price</div>
+                                                    }
+                                                </div>
                                             </div>
                                             <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">add to cart</a></div>
                                         </div>
@@ -142,24 +145,28 @@
 
 
                             </div>
-
+                            @*<div class="row">
+                                <div class="col-6"></div>
+                                <div class="col-6" style="text-align:right;">
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                                </div>
+                            </div>*@
                             <!-- Product Sorting -->
-
-                            <div class="product_sorting_container product_sorting_container_bottom clearfix">
-                                <ul class="product_sorting">
-                                    <li>
-                                        <span>Show:</span>
-                                        <span class="num_sorting_text">04</span>
-                                        <i class="fa fa-angle-down"></i>
-                                        <ul class="sorting_num">
-                                            <li class="num_sorting_btn"><span>01</span></li>
-                                            <li class="num_sorting_btn"><span>02</span></li>
-                                            <li class="num_sorting_btn"><span>03</span></li>
-                                            <li class="num_sorting_btn"><span>04</span></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                            @*<div class="product_sorting_container product_sorting_container_bottom clearfix">
+            <ul class="product_sorting">
+                <li>
+                    <span>Show:</span>
+                    <span class="num_sorting_text">04</span>
+                    <i class="fa fa-angle-down"></i>
+                    <ul class="sorting_num">
+                        <li class="num_sorting_btn"><span>01</span></li>
+                        <li class="num_sorting_btn"><span>02</span></li>
+                        <li class="num_sorting_btn"><span>03</span></li>
+                        <li class="num_sorting_btn"><span>04</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>*@
 
                         </div>
                     </div>

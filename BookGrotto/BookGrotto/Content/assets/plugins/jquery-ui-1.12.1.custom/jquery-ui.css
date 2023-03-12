@@ -104,15 +104,15 @@
 	touch-action: none;
 	border-radius: 50%;
 }
-.ui-slider .ui-slider-range {
-	position: absolute;
-	z-index: 1;
-	font-size: .7em;
-	display: block;
-	border: 0;
-	background-position: 0 0;
-	background-color: #fe4c50;
-}
+	.ui-slider .ui-slider-range {
+		position: absolute;
+		z-index: 1;
+		font-size: .7em;
+		display: block;
+		border: 0;
+		background-position: 0 0;
+		background-color: #007bff;
+	}
 
 /* support: IE8 - See #6727 */
 .ui-slider.ui-state-disabled .ui-slider-handle,
@@ -197,20 +197,19 @@
 
 /* Interaction states
 ----------------------------------*/
-.ui-state-default,
-.ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default,
-.ui-button,
-
-/* We use html here because we need a greater specificity to make sure disabled
+	.ui-state-default,
+	.ui-widget-content .ui-state-default,
+	.ui-widget-header .ui-state-default,
+	.ui-button,
+	/* We use html here because we need a greater specificity to make sure disabled
 works properly when clicked or hovered */
-html .ui-button.ui-state-disabled:hover,
-html .ui-button.ui-state-disabled:active {
-	/*border: 1px solid #c5c5c5;*/
-	background: #fe4c50;
-	font-weight: normal;
-	color: #454545;
-}
+	html .ui-button.ui-state-disabled:hover,
+	html .ui-button.ui-state-disabled:active {
+		/*border: 1px solid #c5c5c5;*/
+		background: #007bff;
+		font-weight: normal;
+		color: #454545;
+	}
 .ui-state-default a,
 .ui-state-default a:link,
 .ui-state-default a:visited,

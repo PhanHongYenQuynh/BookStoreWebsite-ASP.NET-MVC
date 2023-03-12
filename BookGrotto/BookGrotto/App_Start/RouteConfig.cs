@@ -57,6 +57,13 @@ namespace BookGrotto
 
             );
             routes.MapRoute(
+               name: "NewsPost",
+               url: "bai-viet",
+               defaults: new { controller = "Posts", action = "Index", alias = UrlParameter.Optional },
+               namespaces: new[] { "BookGrotto.Controllers" }
+
+            );
+            routes.MapRoute(
                name: "DetailNews",
                url: "{alias}-n{id}",
                defaults: new { controller = "News", action = "Detail", id = UrlParameter.Optional },

@@ -1,0 +1,48 @@
+﻿@model BookGrotto.Models.EF.Posts
+@{
+    ViewBag.Title = "Chi tiết Bài Viết";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
+
+<style>
+    .Posts_section_container {
+        margin-top: 180px;
+    }
+
+    .title-Posts {
+        font-size: 30px;
+        border-bottom: 1px solid;
+        padding: 15px 0;
+        margin-bottom: 25px;
+    }
+
+    .row-item-Posts {
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="container Posts_section_container">
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <h5 class="title-Posts"><strong>@Model.Title</strong> </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>@Model.Description</h5>
+
+            </div>
+            <div class="col-md-12">
+                <div class="picture_center">
+                    <img src="@Model.Image" alt="@Model.Image" width="700px">
+                </div>
+            </div>
+            <div class="col-md-12">
+                @Html.Raw(Model.Detail)
+            </div>
+        </div>
+    }
+
+</div>

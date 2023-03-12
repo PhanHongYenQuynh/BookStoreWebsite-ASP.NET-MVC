@@ -43,6 +43,7 @@ namespace BookGrotto.Areas.Admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
+
                 model.Alias = BookGrotto.Models.Common.Filter.FilterChar(model.Title);
                 db.ProductCategories.Add(model);
                 db.SaveChanges();
@@ -63,15 +64,11 @@ namespace BookGrotto.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ProductCategories.Attach(model);
+                model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = BookGrotto.Models.Common.Filter.FilterChar(model.Title);
-                /*Cho phép sữa*/
-                db.Entry(model).Property(x => x.Title).IsModified = true;
-                db.Entry(model).Property(x => x.Alias).IsModified = true;
-                db.Entry(model).Property(x => x.SeoDescription).IsModified = true;
-                db.Entry(model).Property(x => x.SeoKeywords).IsModified = true;
-                db.Entry(model).Property(x => x.SeoTitle).IsModified = true;
+                db.ProductCategories.Attach(model);
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -17,14 +17,36 @@ namespace BookGrotto.Areas.Admin.Controllers
         public ActionResult Index(string Searchtext, int? page)
         {
             IEnumerable<Product> items = db.Products.OrderByDescending(x => x.Id);
-            var pageSize = 5;
+            var pageSize = 10;
             if (page == null)
             {
                 page = 1;
             }
             if (!string.IsNullOrEmpty(Searchtext))
             {
-                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext));
+                char[] charArray = Searchtext.ToCharArray();
+                bool foundSpace = true;
+                //sử dụng vòng lặp for lặp từng phần tử trong mảng
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    //sử dụng phương thức IsLetter() để kiểm tra từng phần tử có phải là một chữ cái
+                    if (Char.IsLetter(charArray[i]))
+                    {
+                        if (foundSpace)
+                        {
+                            //nếu phải thì sử dụng phương thức ToUpper() để in hoa ký tự đầu
+                            charArray[i] = Char.ToUpper(charArray[i]);
+                            foundSpace = false;
+                        }
+                    }
+                    else
+                    {
+                        foundSpace = true;
+                    }
+                }
+                //chuyển đổi kiểu mảng char thàng string
+                Searchtext = new string(charArray);
+                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext) || x.ProductCategory.Title.Contains(Searchtext));
             }
             var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
             items = items.ToPagedList(pageIndex, pageSize);

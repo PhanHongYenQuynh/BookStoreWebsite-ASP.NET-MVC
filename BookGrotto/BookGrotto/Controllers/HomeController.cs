@@ -21,15 +21,15 @@ namespace BookGrotto.Controllers
             return PartialView();
         }
         [HttpPost]
-        public ActionResult Subcrise(Subscribe req)
+        public ActionResult Subscribe(Subscribe req)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                db.Subscribes.Add(new Subscribe { Email=req.Email,CreatedDate= DateTime.Now});
+                db.Subscribes.Add(new Subscribe { Email = req.Email, CreatedDate = DateTime.Now });
                 db.SaveChanges();
-                return Json(new {Success=true});
+                return Json(new { Success = true });
             }
-            return View("Partial_Subcrise",req);
+            return View("Partial_Subcrice", req);
         }
         public ActionResult About()
         {

@@ -12,16 +12,17 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI;
 
 namespace BookGrotto.Areas.Admin.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private ApplicationDbContext db=new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -101,7 +102,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                     return View(model);
             }
         }
-      
+
         //
         // POST: /Account/LogOff
         [HttpPost]
@@ -116,7 +117,7 @@ namespace BookGrotto.Areas.Admin.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         {
-            ViewBag.Role = new SelectList(db.Roles.ToList(),"Name","Name");
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
             return View();
         }
 
@@ -129,12 +130,12 @@ namespace BookGrotto.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser 
-                { 
-                    UserName = model.UserName, 
-                    Email = model.Email, 
-                    FullName = model.FullName, 
-                    Phone=model.Phone  
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    FullName = model.FullName,
+                    Phone=model.Phone
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -156,8 +157,61 @@ namespace BookGrotto.Areas.Admin.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public async Task<ActionResult> Edit(string id)
+        {
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
+            var _user = await UserManager.FindByIdAsync(id);
+            return View(_user);
+        }
 
-        
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(ApplicationUser model, string role)
+        {
+            if (ModelState.IsValid) 
+            {
+                var _user = await UserManager.FindByNameAsync(model.UserName);
+                //var user = new ApplicationUser
+                //{
+                //    UserName = model.UserName,//user nam ko dc phep caaoj nahajt
+                //    Email = model.Email,
+                //    FullName = model.FullName,
+                //    Phone=model.Phone
+                //};
+                _user.FullName=model.FullName;
+                _user.Phone=model.Phone;
+                _user.Email=model.Email;
+                var result = await UserManager.UpdateAsync(_user);
+                if (result.Succeeded)
+                {
+
+                    //UserManager.RemoveFromRole;
+                    if (!string.IsNullOrEmpty(role))
+                        UserManager.AddToRole(_user.Id, role);
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    /*string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");*/
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name");
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+
+
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -181,7 +235,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-        
+
 
     }
 }

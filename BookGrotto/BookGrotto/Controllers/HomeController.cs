@@ -29,7 +29,7 @@ namespace BookGrotto.Controllers
                 db.SaveChanges();
                 return Json(new { Success = true });
             }
-            return View("Partial_Subcrice", req);
+            return View("Partial_Subcrise", req);
         }
         public ActionResult About()
         {

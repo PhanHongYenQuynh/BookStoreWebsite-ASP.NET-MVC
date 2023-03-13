@@ -5,18 +5,18 @@
             <div class="col-lg-6">
                 <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
                     <h4>Đăng ký</h4>
-                    <p>Đăng ký để nhận giảm giá 20%</p>
+                    <p>Đăng ký để mua đơn hàng đầu tiên được giảm giá 20%</p>
                 </div>
             </div>
             <div class="col-lg-6">
-                @using(Ajax.BeginForm("Subcrise", "Home",new AjaxOptions
+                @using (Ajax.BeginForm("Subscribe", "Home", new AjaxOptions
                 {
-                    OnBegin="OnBeginSub",
+                    OnBegin = "OnBeginSub",
                     OnSuccess = "OnSuccessSub",
-                    OnFailure="OnFailureSub"
+                    OnFailure = "OnFailureSub"
                 }))
                 {
-                    @Html.AntiForgeryToken();
+                    @Html.AntiForgeryToken()
                     <script>
                         function OnBeginSub() {
 
@@ -26,16 +26,15 @@
                                 alert("OK");
                             }
                         }
-                        function OnFailureSub(rs) {
-
-                        }
+                        function OnFailureSub(rs) { }
                     </script>
                     <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                        @*@Html.TextBoxFor(x => x.Email, new {})*@
                         <input id="newsletter_email" name="Email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
-                        <button id="newsletter_submit"  type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
+                        <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
                     </div>
                 }
-                
+
             </div>
         </div>
     </div>

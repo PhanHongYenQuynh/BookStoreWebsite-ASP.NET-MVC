@@ -19,6 +19,12 @@ namespace BookGrotto
                 namespaces: new[] { "BookGrotto.Controllers" }
             );
             routes.MapRoute(
+                name: "About",
+                url: "gioi-thieu",
+                defaults: new { controller = "Home", action = "Index", alias = UrlParameter.Optional },
+                namespaces: new[] { "BookGrotto.Controllers" }
+            );
+            routes.MapRoute(
                 name: "CheckOut",
                 url: "thanh-toan",
                 defaults: new { controller = "ShoppingCart", action = "CheckOut", alias = UrlParameter.Optional },

@@ -33,7 +33,7 @@
                 <!-- Price Range Filtering -->
                 <div class="sidebar_section">
                     <div class="sidebar_title">
-                        <h5>Filter by Price</h5>
+                        <h5>Lọc theo Giá</h5>
                     </div>
                     <p>
                         <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
@@ -41,7 +41,7 @@
                         <input type="hidden" id="ToAmount" />
                     </p>
                     <div id="slider-range"></div>
-                    <div class="filter_button"><span>filter</span></div>
+                    <div class="filter_button"><span>Lọc</span></div>
 
                     <hr />
                     @Html.Action("Refesh", "Home")
@@ -88,7 +88,7 @@
                                             <div class="input-group">
                                                 @Html.TextBox("Searchtext")
                                                 <div class="input-group-append">
-                                                    <button type="submit" class="btn btn-lg btn-primary">
+                                                    <button type="submit" class="btn btn-lg btn-outline-primary">
                                                         <i class="fa fa-search"></i>
                                                     </button>
                                                 </div>
@@ -150,15 +150,15 @@
                                             }
                                         </div>
                                     </div>
-                                    <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">add to cart</a></div>
+                                    <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">Thêm vào giỏ hàng</a></div>
                                 </div>
                             }
                         }
 
                     </div>
                     <div class="row">
-                        <div class="col-6"></div>
-                        <div class="col-6" style="text-align:right;">
+                        <div class="col-9"></div>
+                        <div class="col-3" style="text-align:right;">
                             @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                         </div>
                     </div>

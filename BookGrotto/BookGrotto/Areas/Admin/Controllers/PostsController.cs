@@ -65,7 +65,6 @@ namespace BookGrotto.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 model.CreatedDate = DateTime.Now;
-                // cái này chừng nào đủ danh mục thì sẽ thay đổi sau
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = BookGrotto.Models.Common.Filter.FilterChar(model.Title);
                 db.Posts.Attach(model);

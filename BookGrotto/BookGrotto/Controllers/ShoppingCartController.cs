@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Management;
 using System.Web.Mvc;
+using PayPal.Api;
 
 namespace BookGrotto.Controllers
 {
@@ -80,7 +81,7 @@ namespace BookGrotto.Controllers
                 ShoppingCart cart = (ShoppingCart)Session["cart"];
                 if (cart != null)
                 {
-                    Order order = new Order();
+                    var order = new BookGrotto.Models.EF.Order();
                     order.CustomerName = req.CustomerName;
                     order.Phone= req.Phone;
                     order.Address= req.Address;
@@ -182,8 +183,6 @@ namespace BookGrotto.Controllers
             return Json(code);
         }
 
-
-
         
         [HttpPost]
         public ActionResult Delete(int id)
@@ -223,6 +222,139 @@ namespace BookGrotto.Controllers
                 return Json(new { Success = true });
             }
             return Json(new { Success = false });
+        }
+
+        // Work with Paypal Payment
+        private Payment payment;
+        
+        //Create a payment using an APIContext
+        private Payment CreatedPayment(APIContext apiContext, string redirectUrl)
+        {
+            var listItems = new ItemList(){items = new List<Item>()};
+
+            List<ShoppingCartItem> listCarts = (List<ShoppingCartItem>)Session["cart"];
+            foreach (var cart in listCarts)
+            {
+                listItems.items.Add(new Item()
+                {
+                    name = cart.ProductName,
+                    currency = "USD",
+                    price= cart.Price.ToString(),
+                    quantity= cart.Quantity.ToString(),
+                    sku = "sku"
+                });
+            }
+
+            var payer = new Payer() { payment_method = "paypal" };
+
+            //Do the configuration RedirectURLS here with redirectURLs object
+            var redirUrls = new RedirectUrls() 
+            {
+                cancel_url = redirectUrl,
+                return_url= redirectUrl,
+            };
+
+            //Create details object
+            var details = new Details()
+            {
+                tax = "1",
+                shipping= "2",
+                subtotal= listCarts.Sum(x => x.Quantity * x.Price).ToString()
+            };
+
+            // Create amount object
+            var amount = new Amount()
+            {
+                currency = "USD",
+                total = (Convert.ToDouble(details.tax) * Convert.ToDouble(details.shipping) * Convert.ToDouble(details.subtotal)).ToString(),//tax + shipping + subtotal
+                details = details
+            };
+
+            //Create transaction
+            var transactionList = new List<Transaction>();
+            transactionList.Add(new Transaction()
+            {
+                description = "Grotto Testing transaction description",
+                invoice_number= Convert.ToString((new Random()).Next(100000)),
+                amount= amount,
+                item_list= listItems
+            });
+
+            payment = new Payment()
+            {
+                intent = "sale",
+                payer = payer,
+                transactions= transactionList,
+                redirect_urls = redirUrls
+            };
+
+            return payment.Create(apiContext);
+        }
+
+        //Create ExecutePayment method
+        private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
+        {
+            var paymentExecution = new PaymentExecution()
+            {
+                payer_id= payerId,
+            };
+            payment = new Payment() { id = paymentId };
+            return payment.Execute(apiContext, paymentExecution);
+        }
+
+        //Create PaymentWithPayPal method
+        public ActionResult PaymentWithPaypal()
+        {
+            //Gettings context from the paypal bases on clientId and secret for payment
+            APIContext apiContext = PaypalConfiguration.GetAPIContext();
+            try
+            {
+                string payerId = Request.Params["PayerID"];
+                if(string.IsNullOrEmpty(payerId) )
+                {
+                    string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/ShoppingCart/PaymentWithPaypal?";
+                    var guid = Convert.ToString((new Random()).Next(100000));
+                    var createdPayment = CreatedPayment(apiContext, baseURI + "guid= " + guid);
+
+                    //Get links returned from paypal response to create call funciton
+                    var links = createdPayment.links.GetEnumerator();
+                    string paypalRedirectUrl = string.Empty;
+
+                    while( links.MoveNext() )
+                    {
+                        Links link = links.Current;
+                        if (link.rel.ToLower().Trim().Equals("approval_url"))
+                        {
+                            paypalRedirectUrl = link.href;
+                        }
+                    }
+                    Session.Add(guid, createdPayment.id);
+                    return Redirect(paypalRedirectUrl);
+                }
+                else
+                {
+                    // this one will be executed when we have received all the payment params from previous call
+                    var guid = Request.Params["guid"];
+                    var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
+                    if (executedPayment.state.ToLower() != "approved")
+                    {
+                        Session.Remove("cart");
+                        return View("Failure");
+                       
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                PaypalLogger.Log("Error: " + ex.Message);
+                Session.Remove("cart");
+                return View("Failure");
+               ;
+            }
+            Session.Remove("cart");
+            return View("Success");
+           
+
         }
     }
 }

@@ -34,8 +34,9 @@ namespace BookGrotto.Controllers
             }
             return View();
         }
-        public ActionResult CheckOutSuccess()
+        public ActionResult CheckOutSuccess(OrderViewModel req)
         {
+
             return View();
         }
 
@@ -75,10 +76,11 @@ namespace BookGrotto.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CheckOut(OrderViewModel req)
         {
+
             var code = new { Success = false, Code = -1 };
             if (ModelState.IsValid)
             {
-                ShoppingCart cart = (ShoppingCart)Session["cart"];
+                ShoppingCart cart = (ShoppingCart) Session["cart"];
                 if (cart != null)
                 {
                     var order = new BookGrotto.Models.EF.Order();
@@ -102,6 +104,20 @@ namespace BookGrotto.Controllers
                     db.Orders.Add(order);
                     db.SaveChanges();
                     // gui mail khach hang
+                    /** 
+                     
+                    if (type == 3) {
+                        goi paypal 
+                        -> success 
+                        -> capj dat down hang
+                    }
+                     */
+                    if (order.TypePayment == 3)
+                    {
+                      return RedirectToAction("PaymentWithPaypal");
+                        // tao down hang paypal
+                    }
+
                     var strSanPham = "";
                     var thanhtien = decimal.Zero;
                     var TongTien = decimal.Zero;
@@ -231,8 +247,10 @@ namespace BookGrotto.Controllers
         private Payment CreatedPayment(APIContext apiContext, string redirectUrl)
         {
             var listItems = new ItemList(){items = new List<Item>()};
+            ShoppingCart shoppingCart = Session["cart"] as ShoppingCart;
 
-            List<ShoppingCartItem> listCarts = (List<ShoppingCartItem>)Session["cart"];
+            List<ShoppingCartItem> listCarts = shoppingCart.Items;
+
             foreach (var cart in listCarts)
             {
                 listItems.items.Add(new Item()
@@ -266,7 +284,7 @@ namespace BookGrotto.Controllers
             var amount = new Amount()
             {
                 currency = "USD",
-                total = (Convert.ToDouble(details.tax) * Convert.ToDouble(details.shipping) * Convert.ToDouble(details.subtotal)).ToString(),//tax + shipping + subtotal
+                total = (Convert.ToDouble(details.tax) + Convert.ToDouble(details.shipping) + Convert.ToDouble(details.subtotal)).ToString(),//tax + shipping + subtotal
                 details = details
             };
 
@@ -275,7 +293,7 @@ namespace BookGrotto.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "Grotto Testing transaction description",
-                invoice_number= Convert.ToString((new Random()).Next(100000)),
+                invoice_number= Convert.ToString((new Random()).Next(1000000000)),
                 amount= amount,
                 item_list= listItems
             });
@@ -313,8 +331,8 @@ namespace BookGrotto.Controllers
                 if(string.IsNullOrEmpty(payerId) )
                 {
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/ShoppingCart/PaymentWithPaypal?";
-                    var guid = Convert.ToString((new Random()).Next(100000));
-                    var createdPayment = CreatedPayment(apiContext, baseURI + "guid= " + guid);
+                    var guid = Convert.ToString((new Random()).Next(1000000000));
+                    var createdPayment = CreatedPayment(apiContext, baseURI + "guid=" + guid);
 
                     //Get links returned from paypal response to create call funciton
                     var links = createdPayment.links.GetEnumerator();
@@ -339,7 +357,7 @@ namespace BookGrotto.Controllers
                     if (executedPayment.state.ToLower() != "approved")
                     {
                         Session.Remove("cart");
-                        return View("Failure");
+                        return View("CheckOutFailure");
                        
                     }
                 }
@@ -348,11 +366,11 @@ namespace BookGrotto.Controllers
             {
                 PaypalLogger.Log("Error: " + ex.Message);
                 Session.Remove("cart");
-                return View("Failure");
+                return View("CheckOutFailure");
                ;
             }
             Session.Remove("cart");
-            return View("Success");
+            return View("CheckOutSuccess");
            
 
         }

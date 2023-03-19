@@ -314,6 +314,7 @@
     <Content Include="Content\admin\images\logo.png" />
     <Content Include="Content\admin\images\anhbia2.jpg" />
     <Content Include="Content\admin\images\anhbia1.jpg" />
+    <Content Include="Content\admin\images\logo_grotto.png" />
     <Content Include="Content\admin\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Content\admin\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="Content\admin\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
@@ -3356,7 +3357,7 @@
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Posts\Detail.cshtml" />
     <Content Include="Views\Posts\Partial_Posts_Home.cshtml" />
-    <Content Include="Views\ShoppingCart\PaymentWithPaypal.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOutFailure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

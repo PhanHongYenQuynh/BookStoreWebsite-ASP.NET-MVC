@@ -18,7 +18,7 @@ namespace BookGrotto.Models
             }
             catch (Exception )
             {
-                throw;
+
             }
 
         }

@@ -13,9 +13,8 @@ namespace BookGrotto.Models
         public readonly static string ClientSecret;
         static PaypalConfiguration()
         {
-            var config = GetConfig();
-            ClientId = config["clientId"];
-            ClientSecret = config["clientSecret"];
+            ClientId = "Abd5z4xNuWolufuFoX9n4vz0oxRV6na9uEwZGD6OaRNnBw1Nsdm03s8EfwECsjH9L2Z7WHLyMBmhNWkM";
+            ClientSecret = "EO1luVGGCLtzRLk9RfIWpHWr5iRh0noAPGfTJLCt1wa_QmiWY2ReakRBw2o9lXUg7-wxoryS8oE_q92I";
         }
 
         public static Dictionary<string, string> GetConfig() 

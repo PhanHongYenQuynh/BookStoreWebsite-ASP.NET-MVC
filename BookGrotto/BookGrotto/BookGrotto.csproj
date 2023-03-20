@@ -3363,6 +3363,7 @@
     <Content Include="Views\ShoppingCart\CheckOutFailure.cshtml" />
     <Content Include="Views\ShoppingCart\PaymentVNPay.cshtml" />
     <Content Include="Views\ShoppingCart\PaymentConfirm.cshtml" />
+    <Content Include="Views\ShoppingCart\PaymentVNPConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

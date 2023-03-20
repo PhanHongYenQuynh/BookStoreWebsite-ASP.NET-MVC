@@ -1,0 +1,25 @@
+-----Paypal Account-----------
+
+first name: Pigeqoj
+last name: gafeda
+
+Email address: pigeqoj.gafeda@jollyfree.com
+Password: PigeqojaA@
+link: https://www.paypal.com/signin?returnUri=https%3A%2F%2Fpaypal.com%2Fbizsignup%2Ffinish%3FfeatureName%3DBOOMERANG_EMAIL%26returnUrl%3D%2Fmep%2Fdashboard%26utm_source%3Depsilon%26utm_campaign%3DT__%26utm_medium%3Demail
+
+Email_client: sb-01koe25298887@personal.example.com
+Password_client: hr4F3$Ps
+
+-----VNPay Account----------
+
+email: hovinh414@gmail.com
+pass: Hovinh1003
+https://sandbox.vnpayment.vn/merchantv2/
+
+Tài khoản test VNPAY
+
+Ngân hàng: NCB
+Số thẻ: 9704198526191432198
+Tên chủ thẻ: NGUYEN VAN A
+Ngày phát hành: 07/15
+Mật khẩu OTP: 123456

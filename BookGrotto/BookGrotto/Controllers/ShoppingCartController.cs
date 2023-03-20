@@ -107,14 +107,7 @@ namespace BookGrotto.Controllers
                     db.Orders.Add(order);
                     db.SaveChanges();
                     // gui mail khach hang
-                    /** 
-                     
-                    if (type == 3) {
-                        goi paypal 
-                        -> success 
-                        -> capj dat down hang
-                    }
-                     */
+
                     if (order.TypePayment == 3)
                     {
                       return RedirectToAction("PaymentWithPaypal");
@@ -417,7 +410,7 @@ namespace BookGrotto.Controllers
             return Redirect(paymentUrl);
         }
 
-        public ActionResult PaymentConfirm()
+        public ActionResult PaymentVNPConfirm()
         {
             if (Request.QueryString.Count > 0)
             {
@@ -443,6 +436,7 @@ namespace BookGrotto.Controllers
 
                 if (checkSignature)
                 {
+                    ViewBag.Code = vnp_ResponseCode;
                     if (vnp_ResponseCode == "00")
                     {
                         //Thanh toán thành công
@@ -453,6 +447,12 @@ namespace BookGrotto.Controllers
                         //Thanh toán không thành công. Mã lỗi: vnp_ResponseCode
                         ViewBag.Message = "Có lỗi xảy ra trong quá trình xử lý hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId + " | Mã lỗi: " + vnp_ResponseCode;
                     }
+                    if (vnp_ResponseCode == "24")
+                    {
+                        //Thanh toán không thành công. Mã lỗi: vnp_ResponseCode
+                        ViewBag.Message = "Giao dịch không thành công do: Khách hàng hủy giao dịch";
+                    }
+                    
                 }
                 else
                 {

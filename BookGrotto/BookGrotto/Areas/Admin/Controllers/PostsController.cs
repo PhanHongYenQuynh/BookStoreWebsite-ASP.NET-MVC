@@ -44,7 +44,7 @@ namespace BookGrotto.Areas.Admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 // cái này chừng nào đủ danh mục thì sẽ thay đổi sau
-                model.CategoryId = 2002;
+                model.CategoryId = 4;
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = BookGrotto.Models.Common.Filter.FilterChar(model.Title);
                 db.Posts.Add(model);

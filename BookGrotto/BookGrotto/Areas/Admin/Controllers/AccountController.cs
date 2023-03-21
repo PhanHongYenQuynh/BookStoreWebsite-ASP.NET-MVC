@@ -186,6 +186,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                 _user.FullName=model.FullName;
                 _user.Phone=model.Phone;
                 _user.Email=model.Email;
+                _user.LockoutEnabled=model.LockoutEnabled;
                 var result = await UserManager.UpdateAsync(_user);
                 if (result.Succeeded)
                 {
@@ -210,7 +211,35 @@ namespace BookGrotto.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult UpdateTT(string id, bool trangthai)
+        {
+            var item = db.Users.Find(id);
+            if (item != null)
+            {
+                db.Users.Attach(item);
+                item.LockoutEnabled = trangthai;
+                db.Entry(item).Property(x => x.LockoutEnabled).IsModified=true;
+                db.SaveChanges();
+                return Json(new { message = "Thành công", Success = true });
+            }
+            return Json(new { message = "Thất bại!", Success = false });
+        }
 
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            var item = db.Users.Find(id);
+            if (item != null)
+            {
+
+                db.Users.Remove(item);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+
+        }
 
         private IAuthenticationManager AuthenticationManager
         {

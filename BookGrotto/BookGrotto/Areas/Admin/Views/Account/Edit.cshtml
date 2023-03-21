@@ -49,26 +49,25 @@
                     @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
                 </div>
+
                 <div class="form-group">
                     <label>Phone</label>
                     @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.Phone, null, new { @class = "text-danger" })
                 </div>
+
+                <div class="form-group">
+                    <label>Kích hoạt</label>
+                    @Html.TextBoxFor(x => x.LockoutEnabled, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.LockoutEnabled, null, new { @class = "text-danger" })
+                </div>
+
                 <div class="form-group">
                     <label>Chức vụ</label>
                     @Html.DropDownList("Role", ViewBag.Role as SelectList, "-- Chọn quyền --", new { @class = "form-control" })
-                    @*@Html.ValidationMessageFor(x => x.Role, null, new { @class = "text-danger" })*@
+                   
                 </div>
-                @*<div class="form-group">
-                    <label>Mật khẩu</label>
-                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Password, null, new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label>Nhập lại mật khẩu</label>
-                    @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.ConfirmPassword, null, new { @class = "text-danger" })
-                </div>*@
+              
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </div>

@@ -39,7 +39,7 @@
                         <th>Tên tài khoản</th>
                         <th>Họ tên</th>
                         <th>Email</th>
-                        <th>Ngày tạo</th>
+                        <th>Kích hoạt</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -55,9 +55,10 @@
                                 <td>@item.UserName</td>
                                 <td>@item.FullName</td>
                                 <td>@item.Email</td>
+                                <td>@item.LockoutEnabled</td>
                                 <td>
                                     <a href="/admin/account/Edit/@item.Id" class="btn btn-sm btn-primary">Cập nhật</a>
-                                    <a href="/admin/account/Delete/@item.Id" class="btn btn-sm btn-danger">Xóa</a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xoá</a>
                                 </td>
                             </tr>
                             i++;
@@ -84,5 +85,27 @@
     </div>
     <!-- /.card -->
 
+
 </section>
-<!-- /.content -->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id");
+                var conf = confirm('Bạn chắc chắn có muốn xoá ?');
+                if (conf == true) {
+                    $.ajax({
+                        url: '/admin/account/delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

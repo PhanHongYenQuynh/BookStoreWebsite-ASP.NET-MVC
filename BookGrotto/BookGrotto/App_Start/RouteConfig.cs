@@ -50,7 +50,7 @@ namespace BookGrotto
            );
             routes.MapRoute(
                name: "Products",
-               url: "san-pham",
+               url: "danh-muc-san-pham/san-pham",
                defaults: new { controller = "Products", action = "Index", alias = UrlParameter.Optional },
                namespaces: new[] { "BookGrotto.Controllers" }
 

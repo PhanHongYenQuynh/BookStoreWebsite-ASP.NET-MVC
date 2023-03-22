@@ -26,16 +26,20 @@
         <label>Email</label>
         <input type="text" name="Email" class="form-control" autocomplete="off" />
     </div>
-    <div class="form-group">
+    <div>
         <label>Hình thức thanh toán</label>
-        <select style="color: dodgerblue" class="form-control" name="TypePayment">
-            <option value="1" selected>COD</option>
-            <option value="2">Chuyển khoản</option>
-            <option value="3">PayPal</option>
-            <option value="4">VNPay</option>
-        </select>
-       
     </div>
+    <div class="form-group">
+        <input type="radio" name="TypePayment" value="1">
+        <img width="50" src="~/Content/assets/images/cod.jpg" /><label>COD</label><br>
+        <input type="radio" name="TypePayment" value="2">
+        <img width="50" src="~/Content/assets/images/chuyenkhoan.png" /><label>Chuyển Khoản</label><br>
+        <input type="radio" name="TypePayment" value="4">
+        <img width="50" src="~/Content/assets/images/vnpay.png" /><label>VNPay</label><br>
+        <input type="radio" name="TypePayment" value="3  ">
+        <img width="50" src="~/Content/assets/images/paypal.png" /><label>PayPal</label><br>
+    </div>
+
     <div class="form-group">
         <button type="submit" class="btn btn-lg btn-primary">Đặt hàng</button>
     </div>

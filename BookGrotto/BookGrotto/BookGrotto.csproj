@@ -252,9 +252,12 @@
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PaypalLogger.cs" />
+    <Compile Include="Models\Result.cs" />
     <Compile Include="Models\SettingSystemViewModel.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\ThongKeViewModel.cs" />
+    <Compile Include="Momo\MoMoSecurity.cs" />
+    <Compile Include="Momo\PaymentRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="VNPay\PayCompare.cs" />
@@ -2183,6 +2186,7 @@
     <Content Include="Content\assets\images\desc_3.jpg" />
     <Content Include="Content\assets\images\IMG_2267.JPG" />
     <Content Include="Content\assets\images\map_marker.png" />
+    <Content Include="Content\assets\images\momo.png" />
     <Content Include="Content\assets\images\paypal.png" />
     <Content Include="Content\assets\images\product_1.png" />
     <Content Include="Content\assets\images\product_10.png" />
@@ -3379,6 +3383,7 @@
     <Content Include="Views\ShoppingCart\PaymentVNPay.cshtml" />
     <Content Include="Views\ShoppingCart\PaymentConfirm.cshtml" />
     <Content Include="Views\ShoppingCart\PaymentVNPConfirm.cshtml" />
+    <Content Include="Views\ShoppingCart\PaymentMomo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,6 +13,9 @@ using BookGrotto.VNPay;
 using Util = BookGrotto.VNPay.Util;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Ajax.Utilities;
+using BookGrotto.Momo;
+using Newtonsoft.Json.Linq;
+using System.Security.Policy;
 
 namespace BookGrotto.Controllers
 {
@@ -126,6 +129,11 @@ namespace BookGrotto.Controllers
                         return RedirectToAction("PaymentVNPay");
                         //tạo hàng VNPay
                     }
+                    if (order.TypePayment == 5)
+                    {
+                        return RedirectToAction("PaymentMomo");
+                        //tạo hàng VNPay
+                    }
                     SendMail(GetInfo.Email, cart, order);
                     return RedirectToAction("CheckOutSuccess");
                 }
@@ -188,6 +196,10 @@ namespace BookGrotto.Controllers
             {
                 contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: VNPay");
             }
+            if (order.TypePayment == 5)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: Momo");
+            }
             contentCustomer = contentCustomer.Replace("{{ThanhTien}}", BookGrotto.Common.Common.FormatNumber(thanhtien, 0));
             contentCustomer = contentCustomer.Replace("{{TongTien}}", BookGrotto.Common.Common.FormatNumber(TongTien, 0));
             BookGrotto.Common.Common.SendMail("BookGrotto", "Đơn hàng #" + order.Code, contentCustomer.ToString(), email);
@@ -216,12 +228,101 @@ namespace BookGrotto.Controllers
             {
                 contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: VNPay");
             }
+            if (order.TypePayment == 5)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: Momo");
+            }
             contentAdmin = contentAdmin.Replace("{{ThanhTien}}", BookGrotto.Common.Common.FormatNumber(thanhtien, 0));
             contentAdmin = contentAdmin.Replace("{{TongTien}}", BookGrotto.Common.Common.FormatNumber(TongTien, 0));
             BookGrotto.Common.Common.SendMail("BookGrotto", "Đơn hàng mới #" + order.Code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
             cart.ClearCart();
         }
+        public ActionResult PaymentMomo()
+        {
+            var order = new BookGrotto.Models.EF.Order();
+            ShoppingCart cart = (ShoppingCart)Session["cart"];
+            cart.Items.ForEach(x => order.OrderDetails.Add(new OrderDetail
+            {
+                ProductId = x.ProductId,
+                Quantity = x.Quantity,
+                Price = x.Price,
+            }));
+            order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity));
+            //request params need to request to MoMo system
+            string endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+            string partnerCode = "MOMOJMUD20220907";
+            string accessKey = "4P1sX4jWK4RhExaX";
+            string serectkey = "FcnI5hgWY9fkaf5rNRNrR8Ugrq7LaRCw";
+            string orderInfo = "Thanh toán đơn hàng - BookGrotto";
+            string returnUrl = "https://localhost:44303/ShoppingCart/ConfirmPaymentClient";
+            string notifyurl = "https://dashboard.ngrok.com/events/subscriptions"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
+            string amount = ((int)order.TotalAmount).ToString();
+            string orderid = DateTime.Now.Ticks.ToString();//mã đơn hàng
+            string requestId = DateTime.Now.Ticks.ToString();
+            string extraData = "";
+
+            //Before sign HMAC SHA256 signature
+            string rawHash = "partnerCode=" +
+                partnerCode + "&accessKey=" +
+                accessKey + "&requestId=" +
+                requestId + "&amount=" +
+                amount + "&orderId=" +
+                orderid + "&orderInfo=" +
+                orderInfo + "&returnUrl=" +
+                returnUrl + "&notifyUrl=" +
+                notifyurl + "&extraData=" +
+                extraData;
+
+            MoMoSecurity crypto = new MoMoSecurity();
+            //sign signature SHA256
+            string signature = crypto.signSHA256(rawHash, serectkey);
+
+            //build body json request
+            JObject message = new JObject
+            {
+                { "partnerCode", partnerCode },
+                { "accessKey", accessKey },
+                { "requestId", requestId },
+                { "amount", amount },
+                { "orderId", orderid },
+                { "orderInfo", orderInfo },
+                { "returnUrl", returnUrl },
+                { "notifyUrl", notifyurl },
+                { "extraData", extraData },
+                { "requestType", "captureMoMoWallet" },
+                { "signature", signature }
+
+            };
+
+            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+
+            JObject jmessage = JObject.Parse(responseFromMomo);
+            return Redirect(jmessage.GetValue("payUrl").ToString());
+        }
+
+        //Khi thanh toán xong ở cổng thanh toán Momo, Momo sẽ trả về một số thông tin, trong đó có errorCode để check thông tin thanh toán
+        //errorCode = 0 : thanh toán thành công (Request.QueryString["errorCode"])
+        //Tham khảo bảng mã lỗi tại: https://developers.momo.vn/#/docs/aio/?id=b%e1%ba%a3ng-m%c3%a3-l%e1%bb%97i
+        public ActionResult ConfirmPaymentClient(Result result)
+        {
+            //lấy kết quả Momo trả về và hiển thị thông báo cho người dùng (có thể lấy dữ liệu ở đây cập nhật xuống db)
+            string rMessage = result.message;
+            string rOrderId = result.orderId;
+            string rErrorCode = result.errorCode;
+            ShoppingCart cart = (ShoppingCart)Session["cart"];
+            if (rErrorCode == "0")
+            {
+
+                //Thanh toán thành công
+                SendMail(GetInfo.Email, cart, GetInfo.OrderInfo);
+                return View("CheckOutSuccess");
+            }
+            else
+            {
+                return View("CheckOutFailure");
+            }
+        }
         [HttpPost]
         public ActionResult AddToCart(int id, int quantity)
         {

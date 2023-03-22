@@ -40,6 +40,10 @@ namespace BookGrotto.Models
         public void UpdateQuantity(int id, int quantity)
         {
             var checkExits = Items.SingleOrDefault(x=>x.ProductId == id);
+            if(quantity <= 0)
+            {
+                Remove(id);
+            }    
             if(checkExits!=null)
             {
                 checkExits.Quantity = quantity;

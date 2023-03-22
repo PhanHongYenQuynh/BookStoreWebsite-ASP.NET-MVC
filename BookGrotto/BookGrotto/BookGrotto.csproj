@@ -224,6 +224,10 @@
     <Compile Include="Migrations\202303070305377_Update.designer.cs">
       <DependentUpon>202303070305377_Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303211336304_CreateTBThongKe.cs" />
+    <Compile Include="Migrations\202303211336304_CreateTBThongKe.designer.cs">
+      <DependentUpon>202303211336304_CreateTBThongKe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Common\Filter.cs" />
@@ -311,6 +315,9 @@
     <Content Include="Content\admin\dist\js\pages\dashboard.js" />
     <Content Include="Content\admin\dist\js\pages\dashboard2.js" />
     <Content Include="Content\admin\dist\js\pages\dashboard3.js" />
+    <Content Include="Content\admin\images\Blue White Logo.png" />
+    <Content Include="Content\admin\images\Blue White Simple Aesthetic Book Cafe Logo.png" />
+    <Content Include="Content\admin\images\Blue White Simple Logo.png" />
     <Content Include="Content\admin\images\logo4.png" />
     <Content Include="Content\admin\images\logo3.png" />
     <Content Include="Content\admin\images\logo2.png" />
@@ -2158,17 +2165,21 @@
     <Content Include="Content\admin\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\assets\images\1.jpg" />
     <Content Include="Content\assets\images\1.png" />
+    <Content Include="Content\assets\images\A_Grotto.png" />
     <Content Include="Content\assets\images\banner_1.jpg" />
     <Content Include="Content\assets\images\banner_2.jpg" />
     <Content Include="Content\assets\images\banner_3.jpg" />
     <Content Include="Content\assets\images\blog_1.jpg" />
     <Content Include="Content\assets\images\blog_2.jpg" />
     <Content Include="Content\assets\images\blog_3.jpg" />
+    <Content Include="Content\assets\images\Blue2-removebg-preview.png" />
+    <Content Include="Content\assets\images\Blue_and_Black_Simple_Bookstore_Logo-removebg-preview.png" />
     <Content Include="Content\assets\images\book_remove.png" />
     <Content Include="Content\assets\images\deal_ofthe_week.png" />
     <Content Include="Content\assets\images\desc_1.jpg" />
     <Content Include="Content\assets\images\desc_2.jpg" />
     <Content Include="Content\assets\images\desc_3.jpg" />
+    <Content Include="Content\assets\images\IMG_2267.JPG" />
     <Content Include="Content\assets\images\map_marker.png" />
     <Content Include="Content\assets\images\product_1.png" />
     <Content Include="Content\assets\images\product_10.png" />
@@ -3392,6 +3403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303070305377_Update.resx">
       <DependentUpon>202303070305377_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303211336304_CreateTBThongKe.resx">
+      <DependentUpon>202303211336304_CreateTBThongKe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

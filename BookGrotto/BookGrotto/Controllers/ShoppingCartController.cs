@@ -151,10 +151,26 @@ namespace BookGrotto.Controllers
             contentCustomer = contentCustomer.Replace("{{MaDon}}", order.Code);
             contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
             contentCustomer = contentCustomer.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
-            contentCustomer = contentCustomer.Replace("{{TenKhachHang}}", order.CustomerName);
-            contentCustomer = contentCustomer.Replace("{{Phone}}", order.Phone);
-            contentCustomer = contentCustomer.Replace("{{Email}}", email);
-            contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", order.Address);
+            contentCustomer = contentCustomer.Replace("{{TenKhachHang}}","Tên Người Nhận: " + order.CustomerName);
+            contentCustomer = contentCustomer.Replace("{{Phone}}", "Số Điện Thoại: " + order.Phone);
+            contentCustomer = contentCustomer.Replace("{{Email}}", "Email: " + email);
+            contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", "Địa Chỉ Nhận Hàng: " + order.Address);
+            if (order.TypePayment == 1)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: COD");
+            }
+            if (order.TypePayment == 2)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: Chuyển Khoản");
+            }
+            if (order.TypePayment == 3)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: PayPal");
+            }
+            if (order.TypePayment == 4)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: VNPay");
+            }
             contentCustomer = contentCustomer.Replace("{{ThanhTien}}", BookGrotto.Common.Common.FormatNumber(thanhtien, 0));
             contentCustomer = contentCustomer.Replace("{{TongTien}}", BookGrotto.Common.Common.FormatNumber(TongTien, 0));
             BookGrotto.Common.Common.SendMail("BookGrotto", "Đơn hàng #" + order.Code, contentCustomer.ToString(), email);
@@ -163,10 +179,26 @@ namespace BookGrotto.Controllers
             contentAdmin = contentAdmin.Replace("{{MaDon}}", order.Code);
             contentAdmin = contentAdmin.Replace("{{SanPham}}", strSanPham);
             contentAdmin = contentAdmin.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
-            contentAdmin = contentAdmin.Replace("{{TenKhachHang}}", order.CustomerName);
-            contentAdmin = contentAdmin.Replace("{{Phone}}", order.Phone);
-            contentAdmin = contentAdmin.Replace("{{Email}}", email);
-            contentAdmin = contentAdmin.Replace("{{DiaChiNhanHang}}", order.Address);
+            contentAdmin = contentAdmin.Replace("{{TenKhachHang}}", "Tên Người Nhận: " + order.CustomerName);
+            contentAdmin = contentAdmin.Replace("{{Phone}}", "Số Điện Thoại: " + order.Phone);
+            contentAdmin = contentAdmin.Replace("{{Email}}", "Emaili: " + email);
+            contentAdmin = contentAdmin.Replace("{{DiaChiNhanHang}}", "Địa Chỉ Nhận Hàng: " + order.Address);
+            if (order.TypePayment == 1)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: COD");
+            }
+            if (order.TypePayment == 2)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: Chuyển Khoản");
+            }
+            if (order.TypePayment == 3)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: PayPal");
+            }
+            if (order.TypePayment == 4)
+            {
+                contentCustomer = contentCustomer.Replace("{{HinhThucThanhToan}}", "Hình Thức Thanh Toán: VNPay");
+            }
             contentAdmin = contentAdmin.Replace("{{ThanhTien}}", BookGrotto.Common.Common.FormatNumber(thanhtien, 0));
             contentAdmin = contentAdmin.Replace("{{TongTien}}", BookGrotto.Common.Common.FormatNumber(TongTien, 0));
             BookGrotto.Common.Common.SendMail("BookGrotto", "Đơn hàng mới #" + order.Code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);

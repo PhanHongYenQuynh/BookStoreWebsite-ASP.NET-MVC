@@ -2175,12 +2175,15 @@
     <Content Include="Content\assets\images\Blue2-removebg-preview.png" />
     <Content Include="Content\assets\images\Blue_and_Black_Simple_Bookstore_Logo-removebg-preview.png" />
     <Content Include="Content\assets\images\book_remove.png" />
+    <Content Include="Content\assets\images\chuyenkhoan.png" />
+    <Content Include="Content\assets\images\cod.jpg" />
     <Content Include="Content\assets\images\deal_ofthe_week.png" />
     <Content Include="Content\assets\images\desc_1.jpg" />
     <Content Include="Content\assets\images\desc_2.jpg" />
     <Content Include="Content\assets\images\desc_3.jpg" />
     <Content Include="Content\assets\images\IMG_2267.JPG" />
     <Content Include="Content\assets\images\map_marker.png" />
+    <Content Include="Content\assets\images\paypal.png" />
     <Content Include="Content\assets\images\product_1.png" />
     <Content Include="Content\assets\images\product_10.png" />
     <Content Include="Content\assets\images\product_2.png" />
@@ -2198,6 +2201,7 @@
     <Content Include="Content\assets\images\single_3.jpg" />
     <Content Include="Content\assets\images\single_3_thumb.jpg" />
     <Content Include="Content\assets\images\slider_1.jpg" />
+    <Content Include="Content\assets\images\vnpay.png" />
     <Content Include="Content\assets\js\categories_custom.js" />
     <Content Include="Content\assets\js\contact_custom.js" />
     <Content Include="Content\assets\js\custom.js" />

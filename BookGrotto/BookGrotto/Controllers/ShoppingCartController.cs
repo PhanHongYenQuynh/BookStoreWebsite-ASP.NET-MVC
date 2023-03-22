@@ -12,6 +12,7 @@ using CKFinder.Connector;
 using BookGrotto.VNPay;
 using Util = BookGrotto.VNPay.Util;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Ajax.Utilities;
 
 namespace BookGrotto.Controllers
 {
@@ -92,6 +93,7 @@ namespace BookGrotto.Controllers
                 ShoppingCart cart = (ShoppingCart)Session["cart"];
                 if (cart != null)
                 {
+                    
                     var order = new BookGrotto.Models.EF.Order();
                     order.CustomerName = req.CustomerName;
                     order.Phone = req.Phone;
@@ -132,6 +134,21 @@ namespace BookGrotto.Controllers
         }
         private void SendMail(string email, ShoppingCart cart, Models.EF.Order order)
         {
+            List<Product> products = db.Products.ToList();
+            List<OrderDetail> orderDetails = order.OrderDetails.ToList();
+            foreach (var itemProduct in products)
+            {
+                foreach (var itemOrderDetail in orderDetails)
+                {
+                    if (itemProduct.Id == itemOrderDetail.ProductId)
+                    {
+                        itemProduct.Quantity -= itemOrderDetail.Quantity;
+                        db.Products.Attach(itemProduct);
+                        db.Entry(itemProduct).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+            }
             db.Orders.Add(order);
             db.SaveChanges();
             var strSanPham = "";

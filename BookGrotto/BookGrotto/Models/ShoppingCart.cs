@@ -5,13 +5,16 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
+using System.Web.Services.Description;
 
 namespace BookGrotto.Models
 {
     public class ShoppingCart
     {
-        public List<ShoppingCartItem> Items { get; set; } 
+        public List<ShoppingCartItem> Items { get; set; }
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ShoppingCart()
         {
             this.Items= new List<ShoppingCartItem>();
@@ -42,6 +45,7 @@ namespace BookGrotto.Models
             var checkExits = Items.SingleOrDefault(x=>x.ProductId == id);
             if(quantity <= 0)
             {
+
                 Remove(id);
             }    
             if(checkExits!=null)

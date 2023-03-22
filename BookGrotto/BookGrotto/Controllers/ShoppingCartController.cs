@@ -39,7 +39,7 @@ namespace BookGrotto.Controllers
             ShoppingCart cart = (ShoppingCart)Session["cart"];
             if (cart != null && cart.Items.Any())
             {
-                ViewBag.CheckCart=cart;
+                ViewBag.CheckCart = cart;
             }
             return View();
         }
@@ -70,11 +70,11 @@ namespace BookGrotto.Controllers
         public ActionResult ShowCount()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if(cart != null)
+            if (cart != null)
             {
-                return Json(new { Count = cart.Items.Count },JsonRequestBehavior.AllowGet);
+                return Json(new { Count = cart.Items.Count }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { Count = 0 },JsonRequestBehavior.AllowGet);
+            return Json(new { Count = 0 }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Partial_CheckOut()
@@ -89,19 +89,19 @@ namespace BookGrotto.Controllers
             var code = new { Success = false, Code = -1 };
             if (ModelState.IsValid)
             {
-                ShoppingCart cart = (ShoppingCart) Session["cart"];
+                ShoppingCart cart = (ShoppingCart)Session["cart"];
                 if (cart != null)
                 {
                     var order = new BookGrotto.Models.EF.Order();
                     order.CustomerName = req.CustomerName;
-                    order.Phone= req.Phone;
-                    order.Address= req.Address;
-                    order.Email= req.Email;
+                    order.Phone = req.Phone;
+                    order.Address = req.Address;
+                    order.Email = req.Email;
                     cart.Items.ForEach(x => order.OrderDetails.Add(new OrderDetail
                     {
                         ProductId = x.ProductId,
-                        Quantity= x.Quantity,
-                        Price= x.Price,
+                        Quantity = x.Quantity,
+                        Price = x.Price,
                     }));
                     order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity));
                     order.TypePayment = req.TypePayment;
@@ -110,15 +110,15 @@ namespace BookGrotto.Controllers
                     order.CreatedBy = req.Phone;
                     GetInfo.Email = req.Email;
                     GetInfo.OrderInfo = order;
-                    Random rd= new Random();
-                    order.Code= "DH" + rd.Next(0,9) + rd.Next(0,9) + rd.Next(0, 9) + rd.Next(0, 9);
-                    db.Orders.Add(order);
-                    db.SaveChanges();
+                    Random rd = new Random();
+                    order.Code = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
+                    /*db.Orders.Add(order);
+                    db.SaveChanges();*/
                     // gui mail khach hang
 
                     if (order.TypePayment == 3)
                     {
-                      return RedirectToAction("PaymentWithPaypal");
+                        return RedirectToAction("PaymentWithPaypal");
                         //tạo đơn hàng Paypal
                     }
                     if (order.TypePayment == 4)
@@ -134,53 +134,55 @@ namespace BookGrotto.Controllers
         }
         private void SendMail(string email, ShoppingCart cart, Models.EF.Order order)
         {
-                var strSanPham = "";
-                var thanhtien = decimal.Zero;
-                var TongTien = decimal.Zero;
-                foreach (var sp in cart.Items)
-                {
-                    strSanPham += "<tr>";
-                    strSanPham += "<td>" + sp.ProductName + "</td>";
-                    strSanPham += "<td>" + sp.Quantity + "</td>";
-                    strSanPham += "<td>" + BookGrotto.Common.Common.FormatNumber(sp.TotalPrice) + "</td>";
-                    strSanPham += "</tr>";
-                    thanhtien += sp.Quantity * sp.Price;
-                }
-                TongTien = thanhtien;
-                string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send2.html"));
-                contentCustomer = contentCustomer.Replace("{{MaDon}}", order.Code);
-                contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
-                contentCustomer = contentCustomer.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
-                contentCustomer = contentCustomer.Replace("{{TenKhachHang}}", order.CustomerName);
-                contentCustomer = contentCustomer.Replace("{{Phone}}", order.Phone);
-                contentCustomer = contentCustomer.Replace("{{Email}}", email);
-                contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", order.Address);
-                contentCustomer = contentCustomer.Replace("{{ThanhTien}}", BookGrotto.Common.Common.FormatNumber(thanhtien, 0));
-                contentCustomer = contentCustomer.Replace("{{TongTien}}", BookGrotto.Common.Common.FormatNumber(TongTien, 0));
-                BookGrotto.Common.Common.SendMail("BookGrotto", "Đơn hàng #" + order.Code, contentCustomer.ToString(), email);
+            db.Orders.Add(order);
+            db.SaveChanges();
+            var strSanPham = "";
+            var thanhtien = decimal.Zero;
+            var TongTien = decimal.Zero;
+            foreach (var sp in cart.Items)
+            {
+                strSanPham += "<tr>";
+                strSanPham += "<td>" + sp.ProductName + "</td>";
+                strSanPham += "<td>" + sp.Quantity + "</td>";
+                strSanPham += "<td>" + BookGrotto.Common.Common.FormatNumber(sp.TotalPrice) + "</td>";
+                strSanPham += "</tr>";
+                thanhtien += sp.Quantity * sp.Price;
+            }
+            TongTien = thanhtien;
+            string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send2.html"));
+            contentCustomer = contentCustomer.Replace("{{MaDon}}", order.Code);
+            contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
+            contentCustomer = contentCustomer.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
+            contentCustomer = contentCustomer.Replace("{{TenKhachHang}}", order.CustomerName);
+            contentCustomer = contentCustomer.Replace("{{Phone}}", order.Phone);
+            contentCustomer = contentCustomer.Replace("{{Email}}", email);
+            contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", order.Address);
+            contentCustomer = contentCustomer.Replace("{{ThanhTien}}", BookGrotto.Common.Common.FormatNumber(thanhtien, 0));
+            contentCustomer = contentCustomer.Replace("{{TongTien}}", BookGrotto.Common.Common.FormatNumber(TongTien, 0));
+            BookGrotto.Common.Common.SendMail("BookGrotto", "Đơn hàng #" + order.Code, contentCustomer.ToString(), email);
 
-                string contentAdmin = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send1.html"));
-                contentAdmin = contentAdmin.Replace("{{MaDon}}", order.Code);
-                contentAdmin = contentAdmin.Replace("{{SanPham}}", strSanPham);
-                contentAdmin = contentAdmin.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
-                contentAdmin = contentAdmin.Replace("{{TenKhachHang}}", order.CustomerName);
-                contentAdmin = contentAdmin.Replace("{{Phone}}", order.Phone);
-                contentAdmin = contentAdmin.Replace("{{Email}}", email);
-                contentAdmin = contentAdmin.Replace("{{DiaChiNhanHang}}", order.Address);
-                contentAdmin = contentAdmin.Replace("{{ThanhTien}}", BookGrotto.Common.Common.FormatNumber(thanhtien, 0));
-                contentAdmin = contentAdmin.Replace("{{TongTien}}", BookGrotto.Common.Common.FormatNumber(TongTien, 0));
-                BookGrotto.Common.Common.SendMail("BookGrotto", "Đơn hàng mới #" + order.Code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
-                cart.ClearCart();
+            string contentAdmin = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send1.html"));
+            contentAdmin = contentAdmin.Replace("{{MaDon}}", order.Code);
+            contentAdmin = contentAdmin.Replace("{{SanPham}}", strSanPham);
+            contentAdmin = contentAdmin.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
+            contentAdmin = contentAdmin.Replace("{{TenKhachHang}}", order.CustomerName);
+            contentAdmin = contentAdmin.Replace("{{Phone}}", order.Phone);
+            contentAdmin = contentAdmin.Replace("{{Email}}", email);
+            contentAdmin = contentAdmin.Replace("{{DiaChiNhanHang}}", order.Address);
+            contentAdmin = contentAdmin.Replace("{{ThanhTien}}", BookGrotto.Common.Common.FormatNumber(thanhtien, 0));
+            contentAdmin = contentAdmin.Replace("{{TongTien}}", BookGrotto.Common.Common.FormatNumber(TongTien, 0));
+            BookGrotto.Common.Common.SendMail("BookGrotto", "Đơn hàng mới #" + order.Code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
+            cart.ClearCart();
         }
 
         [HttpPost]
-        public ActionResult AddToCart(int id , int quantity)
+        public ActionResult AddToCart(int id, int quantity)
         {
-            var code = new { Success = false, msg = "", code = -1 , Count =0};
+            var code = new { Success = false, msg = "", code = -1, Count = 0 };
             var db = new ApplicationDbContext();
             var checkProduct = db.Products.FirstOrDefault(x => x.Id == id);
-            if(checkProduct!= null)
-                {
+            if (checkProduct != null)
+            {
                 ShoppingCart cart = (ShoppingCart)Session["Cart"];
                 if (cart == null)
                 {
@@ -191,8 +193,8 @@ namespace BookGrotto.Controllers
                     ProductId = checkProduct.Id,
                     ProductName = checkProduct.Title,
                     CategoryName = checkProduct.ProductCategory.Title,
-                    Alias=checkProduct.Alias,
-                    Quantity=quantity
+                    Alias = checkProduct.Alias,
+                    Quantity = quantity
                 };
                 if (checkProduct.ProductImage.FirstOrDefault(x => x.IsDefault) != null)
                 {
@@ -211,7 +213,7 @@ namespace BookGrotto.Controllers
             return Json(code);
         }
 
-        
+
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -220,7 +222,7 @@ namespace BookGrotto.Controllers
             if (cart != null)
             {
                 var checkProduct = cart.Items.FirstOrDefault(x => x.ProductId == id);
-                if(checkProduct != null)
+                if (checkProduct != null)
                 {
                     cart.Remove(id);
                     code = new { Success = true, msg = "", code = 1, Count = cart.Items.Count };
@@ -246,7 +248,7 @@ namespace BookGrotto.Controllers
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
             if (cart != null)
             {
-                cart.UpdateQuantity(id,quantity );
+                cart.UpdateQuantity(id, quantity);
                 return Json(new { Success = true });
             }
             return Json(new { Success = false });
@@ -254,11 +256,11 @@ namespace BookGrotto.Controllers
 
         // Work with Paypal Payment
         private Payment payment;
-        
+
         //Create a payment using an APIContext
         private Payment CreatedPayment(APIContext apiContext, string redirectUrl)
         {
-            var listItems = new ItemList(){items = new List<Item>()};
+            var listItems = new ItemList() { items = new List<Item>() };
             ShoppingCart shoppingCart = Session["cart"] as ShoppingCart;
 
             List<ShoppingCartItem> listCarts = shoppingCart.Items;
@@ -269,8 +271,8 @@ namespace BookGrotto.Controllers
                 {
                     name = cart.ProductName,
                     currency = "USD",
-                    price= cart.Price.ToString(),
-                    quantity= cart.Quantity.ToString(),
+                    price = cart.Price.ToString(),
+                    quantity = cart.Quantity.ToString(),
                     sku = "sku"
                 });
             }
@@ -278,18 +280,18 @@ namespace BookGrotto.Controllers
             var payer = new Payer() { payment_method = "paypal" };
 
             //Do the configuration RedirectURLS here with redirectURLs object
-            var redirUrls = new RedirectUrls() 
+            var redirUrls = new RedirectUrls()
             {
                 cancel_url = redirectUrl,
-                return_url= redirectUrl,
+                return_url = redirectUrl,
             };
 
             //Create details object
             var details = new Details()
             {
                 tax = "1",
-                shipping= "2",
-                subtotal= listCarts.Sum(x => x.Quantity * x.Price).ToString()
+                shipping = "2",
+                subtotal = listCarts.Sum(x => x.Quantity * x.Price).ToString()
             };
 
             // Create amount object
@@ -305,16 +307,16 @@ namespace BookGrotto.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "Grotto Testing transaction description",
-                invoice_number= Convert.ToString((new Random()).Next(1000000000)),
-                amount= amount,
-                item_list= listItems
+                invoice_number = Convert.ToString((new Random()).Next(1000000000)),
+                amount = amount,
+                item_list = listItems
             });
 
             payment = new Payment()
             {
                 intent = "sale",
                 payer = payer,
-                transactions= transactionList,
+                transactions = transactionList,
                 redirect_urls = redirUrls
             };
 
@@ -326,7 +328,7 @@ namespace BookGrotto.Controllers
         {
             var paymentExecution = new PaymentExecution()
             {
-                payer_id= payerId,
+                payer_id = payerId,
             };
             payment = new Payment() { id = paymentId };
             return payment.Execute(apiContext, paymentExecution);
@@ -341,7 +343,7 @@ namespace BookGrotto.Controllers
             try
             {
                 string payerId = Request.Params["PayerID"];
-                if(string.IsNullOrEmpty(payerId) )
+                if (string.IsNullOrEmpty(payerId))
                 {
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/ShoppingCart/PaymentWithPaypal?";
                     var guid = Convert.ToString((new Random()).Next(1000000000));
@@ -351,7 +353,7 @@ namespace BookGrotto.Controllers
                     var links = createdPayment.links.GetEnumerator();
                     string paypalRedirectUrl = string.Empty;
 
-                    while( links.MoveNext() )
+                    while (links.MoveNext())
                     {
                         Links link = links.Current;
                         if (link.rel.ToLower().Trim().Equals("approval_url"))
@@ -371,7 +373,7 @@ namespace BookGrotto.Controllers
                     {
                         Session.Remove("cart");
                         return View("CheckOutFailure");
-                       
+
                     }
                 }
             }
@@ -380,12 +382,12 @@ namespace BookGrotto.Controllers
                 PaypalLogger.Log("Error: " + ex.Message);
                 Session.Remove("cart");
                 return View("CheckOutFailure");
-               ;
+                ;
             }
             Session.Remove("cart");
             SendMail(GetInfo.Email, cart, GetInfo.OrderInfo);
             return View("CheckOutSuccess");
-           
+
 
         }
         public ActionResult PaymentVNPay()
@@ -414,7 +416,7 @@ namespace BookGrotto.Controllers
             pay.AddRequestData("vnp_CurrCode", "VND"); //Đơn vị tiền tệ sử dụng thanh toán. Hiện tại chỉ hỗ trợ VND
             pay.AddRequestData("vnp_IpAddr", Util.GetIpAddress()); //Địa chỉ IP của khách hàng thực hiện giao dịch
             pay.AddRequestData("vnp_Locale", "vn"); //Ngôn ngữ giao diện hiển thị - Tiếng Việt (vn), Tiếng Anh (en)
-            pay.AddRequestData("vnp_OrderInfo", "Thanh toan don hang sach - BookGrotto"); //Thông tin mô tả nội dung thanh toán
+            pay.AddRequestData("vnp_OrderInfo", "Thanh toán hóa đơn sách - BookGrotto"); //Thông tin mô tả nội dung thanh toán
             pay.AddRequestData("vnp_OrderType", "other"); //topup: Nạp tiền điện thoại - billpayment: Thanh toán hóa đơn - fashion: Thời trang - other: Thanh toán trực tuyến
             pay.AddRequestData("vnp_ReturnUrl", returnUrl); //URL thông báo kết quả giao dịch khi Khách hàng kết thúc thanh toán
             pay.AddRequestData("vnp_TxnRef", DateTime.Now.Ticks.ToString()); //mã hóa đơn
@@ -468,7 +470,7 @@ namespace BookGrotto.Controllers
                         //Thanh toán không thành công. Mã lỗi: vnp_ResponseCode
                         ViewBag.Message = "Giao dịch không thành công do: Khách hàng hủy giao dịch";
                     }
-                    
+
                 }
                 else
                 {

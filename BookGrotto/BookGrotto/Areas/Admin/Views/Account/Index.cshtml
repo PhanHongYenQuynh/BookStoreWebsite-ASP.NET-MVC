@@ -39,7 +39,10 @@
                         <th>Tên tài khoản</th>
                         <th>Họ tên</th>
                         <th>Email</th>
+                        <th>Năm sinh</th>
+                        <th>Giới tính</th>
                         <th>Kích hoạt</th>
+                        
                         <th></th>
                     </tr>
                 </thead>
@@ -55,7 +58,9 @@
                                 <td>@item.UserName</td>
                                 <td>@item.FullName</td>
                                 <td>@item.Email</td>
-                                <td>@item.LockoutEnabled</td>
+                                <td>@item.DateOfBirth</td>
+                                <td>@item.Sex</td>
+                                <td>@(item.LockoutEnabled)</td>
                                 <td>
                                     <a href="/admin/account/Edit/@item.Id" class="btn btn-sm btn-primary">Cập nhật</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xoá</a>

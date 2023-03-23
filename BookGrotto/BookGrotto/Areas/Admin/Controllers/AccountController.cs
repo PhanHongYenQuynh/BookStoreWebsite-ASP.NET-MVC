@@ -1,5 +1,6 @@
 ﻿using BookGrotto.Models;
 using BookGrotto.Models.EF;
+using CKFinder.Settings;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -64,6 +65,17 @@ namespace BookGrotto.Areas.Admin.Controllers
             var items = db.Users.ToList();
             return View(items);
         }
+
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            if (file == null)
+            {
+                return "";
+            }
+            file.SaveAs(Server.MapPath("~/Content/Image/" + file.FileName));
+            return "/Content/Image/" + file.FileName;
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -135,7 +147,11 @@ namespace BookGrotto.Areas.Admin.Controllers
                     UserName = model.UserName,
                     Email = model.Email,
                     FullName = model.FullName,
-                    Phone = model.Phone
+                    Phone = model.Phone,
+                    Images = model.Images,
+                    DateOfBirth= model.DateOfBirth,
+                    Sex= model.Sex,
+
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -176,32 +192,19 @@ namespace BookGrotto.Areas.Admin.Controllers
             if (ModelState.IsValid) 
             {
                 var _user = await UserManager.FindByNameAsync(model.UserName);
-                //var user = new ApplicationUser
-                //{
-                //    UserName = model.UserName,//user nam ko dc phep caaoj nahajt
-                //    Email = model.Email,
-                //    FullName = model.FullName,
-                //    Phone=model.Phone
-                //};
                 _user.FullName=model.FullName;
                 _user.Phone=model.Phone;
                 _user.Email=model.Email;
-                _user.LockoutEnabled=model.LockoutEnabled;
+                _user.Images= model.Images;
+                _user.DateOfBirth=model.DateOfBirth;
+                _user.Sex=model.Sex;
+               
                 var result = await UserManager.UpdateAsync(_user);
                 if (result.Succeeded)
                 {
 
-                    //UserManager.RemoveFromRole;
                     if (!string.IsNullOrEmpty(role))
                         UserManager.AddToRole(_user.Id, role);
-                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    /*string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");*/
-
                     return RedirectToAction("Index", "Account");
                 }
                 AddErrors(result);

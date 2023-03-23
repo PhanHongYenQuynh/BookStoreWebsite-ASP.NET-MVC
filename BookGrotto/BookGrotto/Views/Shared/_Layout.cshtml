@@ -1,4 +1,6 @@
 ﻿@using BookGrotto.Common
+@using Microsoft.AspNet.Identity;
+@model  BookGrotto.Models.ApplicationUser
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,6 +75,7 @@
                                             </ul>
                                         </li>*@
                                     <li class="account">
+
                                         @if (!Request.IsAuthenticated)
                                         {
                                             <a href="#">
@@ -91,8 +94,12 @@
                                                 <i class="fa fa-angle-down"></i>
                                             </a>
                                             <ul class="account_selection">
+                                                <li><a href="/account/Profile/@User.Identity.GetUserId()"><i class="fa fa-user-plus" aria-hidden="true"></i>Profile</a></li>
                                                 <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
                                             </ul>
+
+
+
                                         }
                                     </li>
                                 </ul>
@@ -242,7 +249,7 @@
                     <div class="col-lg-3">
                         <div class="block" style="width: 268px;">
                             <h4> </h4>
-                            <h4 class="styles__FooterHeading-sc-32ws10-4 fdMvyN"style="font-size:21px; padding-bottom:52px;">Kết nối với chúng tôi</h4>
+                            <h4 class="styles__FooterHeading-sc-32ws10-4 fdMvyN" style="font-size:21px; padding-bottom:52px;">Kết nối với chúng tôi</h4>
                             <div class="col-lg-4">
                                 <a href="https://www.facebook.com/zinhhh.1003"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
                             </div>
@@ -278,6 +285,7 @@
     @*@Scripts.Render("~/bundles/bootstrap")*@
     <script src="~/Scripts/jsShopping.js"></script>
     @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
 </body>
 </html>
 

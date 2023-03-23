@@ -17,7 +17,8 @@ namespace BookGrotto.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-         
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public AccountController()
         {
         }
@@ -61,6 +62,14 @@ namespace BookGrotto.Controllers
             return View();
         }
 
+        // GET: /Account/User
+        public ActionResult Index()
+        {
+
+            var items = db.Users.ToList();
+            return View(items);
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]
@@ -89,6 +98,55 @@ namespace BookGrotto.Controllers
                     return View(model);
             }
         }
+
+
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            if (file == null)
+            {
+                return "";
+            }
+            file.SaveAs(Server.MapPath("~/Content/Image/" + file.FileName));
+            return "/Content/Image/" + file.FileName;
+        }
+
+        [AllowAnonymous]
+        public async Task<ActionResult> Profile(string id)
+        {
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
+            var _user = await UserManager.FindByIdAsync(id);
+            return View(_user);
+        }
+
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Profile(ApplicationUser model, string role)
+        {
+            if (ModelState.IsValid)
+            {
+                var _user = await UserManager.FindByNameAsync(model.UserName);
+                _user.FullName=model.FullName;
+                _user.Phone=model.Phone;
+                _user.Email=model.Email;
+                _user.Images= model.Images;
+               
+                var result = await UserManager.UpdateAsync(_user);
+                if (result.Succeeded)
+                {
+
+                    if (!string.IsNullOrEmpty(role))
+                        UserManager.AddToRole(_user.Id, role);
+                    return RedirectToAction("Profile", "Account");
+                }
+                AddErrors(result);
+            }
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name");
+
+            return View(model);
+        }
+
 
         //
         // GET: /Account/VerifyCode
@@ -138,6 +196,7 @@ namespace BookGrotto.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+           
             return View();
         }
 
@@ -150,10 +209,20 @@ namespace BookGrotto.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    FullName = model.FullName,
+                    Phone = model.Phone,
+                    DateOfBirth= model.DateOfBirth,
+                    Sex= model.Sex,
+
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -166,7 +235,7 @@ namespace BookGrotto.Controllers
                 }
                 AddErrors(result);
             }
-
+            
             // If we got this far, something failed, redisplay form
             return View(model);
         }

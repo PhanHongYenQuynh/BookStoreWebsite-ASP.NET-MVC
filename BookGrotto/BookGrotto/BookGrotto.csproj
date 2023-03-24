@@ -237,6 +237,10 @@
     <Compile Include="Migrations\202303230112242_UpdateApplicationUser1.designer.cs">
       <DependentUpon>202303230112242_UpdateApplicationUser1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303241529282_UpdateCreateViewModel.cs" />
+    <Compile Include="Migrations\202303241529282_UpdateCreateViewModel.designer.cs">
+      <DependentUpon>202303241529282_UpdateCreateViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Common\Filter.cs" />
@@ -3434,6 +3438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303230112242_UpdateApplicationUser1.resx">
       <DependentUpon>202303230112242_UpdateApplicationUser1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303241529282_UpdateCreateViewModel.resx">
+      <DependentUpon>202303241529282_UpdateCreateViewModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

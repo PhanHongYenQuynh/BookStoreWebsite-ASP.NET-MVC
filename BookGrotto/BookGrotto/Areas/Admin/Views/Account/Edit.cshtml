@@ -46,11 +46,15 @@
                                 <li class="list-group-item">
                                     <b>Giới tính</b> <a class="float-right">@Html.DisplayFor(model => model.Sex)</a>
                                 </li>
+
                                 <li class="list-group-item">
                                     <b>Phone:</b> <a class="float-right">@Html.DisplayFor(model => model.Phone)</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Email:</b> <a class="float-right">@Html.DisplayFor(model => model.Email)</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Kích hoạt:</b> <a class="float-right">@Html.DisplayFor(model => model.LockoutEnabled)</a>
                                 </li>
 
                             </ul>
@@ -75,85 +79,93 @@
                             {
                                 @Html.ValidationSummary(false)
                                 @Html.AntiForgeryToken()
-                                <form class="form-horizontal" action="@Url.Action("Edit", "Account", new { account = Model as ApplicationUser})">
-                                    <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label">Tên tài khoản</label>
-                                        <div class="col-sm-10">
-                                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Tên tài khoản" })
-                                            @Html.ValidationMessageFor(x => x.UserName, null, new { @class = "text-danger" })
-                                        </div>
+                            <form class="form-horizontal" action="@Url.Action("Edit", "Account", new { account = Model as ApplicationUser})">
+                                <div class="form-group row">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Tên tài khoản</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Tên tài khoản" })
+                                        @Html.ValidationMessageFor(x => x.UserName, null, new { @class = "text-danger" })
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label">Họ và Tên</label>
-                                        <div class="col-sm-10">
-                                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "Họ tên" })
-                                            @Html.ValidationMessageFor(x => x.FullName, null, new { @class = "text-danger" })
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Họ và Tên</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "Họ tên" })
+                                        @Html.ValidationMessageFor(x => x.FullName, null, new { @class = "text-danger" })
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="inputBirth" class="col-sm-2 col-form-label">Năm sinh</label>
-                                        <div class="col-sm-10">
-                                            @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control", @placeholder = "Năm sinh" })
-                                            @Html.ValidationMessageFor(x => x.DateOfBirth, null, new { @class = "text-danger" })
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputBirth" class="col-sm-2 col-form-label">Năm sinh</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control", @placeholder = "Năm sinh" })
+                                        @Html.ValidationMessageFor(x => x.DateOfBirth, null, new { @class = "text-danger" })
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="inputSex" class="col-sm-2 col-form-label">Giới tính</label>
-                                        <div class="col-sm-10">
-                                            @Html.TextBoxFor(model => model.Sex, new { @class = "form-control", @placeholder = "Giới tính" })
-                                            @Html.ValidationMessageFor(x => x.Sex, null, new { @class = "text-danger" })
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputSex" class="col-sm-2 col-form-label">Giới tính</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(model => model.Sex, new { @class = "form-control", @placeholder = "Giới tính" })
+                                        @Html.ValidationMessageFor(x => x.Sex, null, new { @class = "text-danger" })
                                     </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                        <label for="inputPhone" class="col-sm-2 col-form-label">Số điện thoại</label>
-                                        <div class="col-sm-10">
-                                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Số điện thoại" })
-                                            @Html.ValidationMessageFor(x => x.Phone, null, new { @class = "text-danger" })
+                                <div class="form-group row">
+                                    <label for="inputSex" class="col-sm-2 col-form-label">Kích hoạt</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(model => model.LockoutEnabled, new { @class = "form-control", @placeholder = "Kích hoạt" })
+                                        @Html.ValidationMessageFor(x => x.LockoutEnabled, null, new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputPhone" class="col-sm-2 col-form-label">Số điện thoại</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Số điện thoại" })
+                                        @Html.ValidationMessageFor(x => x.Phone, null, new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+                                        @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Ảnh đại diện</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            @Html.EditorFor(model => model.Images, "Ảnh đại diện", new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                                                   style="display:none;" />
+                                            <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                        <div class="col-sm-10">
-                                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
-                                            @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                            </label>
                                         </div>
                                     </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Ảnh đại diện</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                @Html.EditorFor(model => model.Images, "Ảnh đại diện", new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="input-group-append">
-                                                <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
-                                                       style="display:none;" />
-                                                <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
-
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <button type="submit" class="btn btn-danger">Lưu</button>
                                     </div>
-
-                                    <div class="form-group row">
-                                        <div class="offset-sm-2 col-sm-10">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">Lưu</button>
-                                        </div>
-                                    </div>
+                                </div>
 
 
-                                </form>
+                            </form>
                             }
                             <!--</div>
                             /.tab-pane -->

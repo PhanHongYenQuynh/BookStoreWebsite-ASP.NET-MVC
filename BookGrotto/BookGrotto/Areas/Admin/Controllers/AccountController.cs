@@ -151,6 +151,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                     Images = model.Images,
                     DateOfBirth= model.DateOfBirth,
                     Sex= model.Sex,
+                    LockoutEnabled = model.LockoutEnabled
 
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -198,6 +199,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                 _user.Images= model.Images;
                 _user.DateOfBirth=model.DateOfBirth;
                 _user.Sex=model.Sex;
+                _user.LockoutEnabled=model.LockoutEnabled;
                
                 var result = await UserManager.UpdateAsync(_user);
                 if (result.Succeeded)

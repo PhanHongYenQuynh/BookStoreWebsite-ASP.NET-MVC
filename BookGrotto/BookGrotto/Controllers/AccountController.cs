@@ -114,7 +114,7 @@ namespace BookGrotto.Controllers
         public async Task<ActionResult> Profile(string id)
         {
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
-            var _user = await UserManager.FindByIdAsync(id);
+            var _user = await UserManager.FindByNameAsync(id);
             return View(_user);
         }
 

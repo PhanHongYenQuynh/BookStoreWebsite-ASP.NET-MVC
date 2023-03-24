@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -55,12 +56,26 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar control-sidebar-light elevation-3">
             <!-- Brand Logo -->
+
             <a href="/admin/home" class="brand-link">
                 <img src="~/Content/admin/images/Blue White Simple Logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light"><strong>BookGrotto</strong></span>
             </a>
 
+            @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="~/Content/admin/images/logo.png" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="/admin/profile/@User.Identity.Name" class="d-block">Alexander Pierce</a>
+                </div>
+            </div>*@
+
+            <!-- Sidebar -->
+            <!-- Sidebar user panel (optional) -->
+
             @Html.Partial("_PartiaSideBar")
+
         </aside>
 
         <!-- Content Wrapper. Contains page content -->

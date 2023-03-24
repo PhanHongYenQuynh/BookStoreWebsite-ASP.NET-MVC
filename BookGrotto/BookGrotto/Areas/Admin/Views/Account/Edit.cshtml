@@ -1,11 +1,12 @@
 ﻿@model BookGrotto.Models.ApplicationUser
+@using BookGrotto.Models
 @{
-    ViewBag.Title = "Danh sách tài khoản";
+    ViewBag.Title = "Profile";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-
-@section naviheader{
+@section naviheader
+{
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -15,130 +16,191 @@
             <a href="/admin/home" class="nav-link"><font color="white">Trang chủ</font></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/account" class="nav-link"><font color="white">@ViewBag.Title</font></a>
+            <a href="/admin/account" class="nav-link"><font color="white">Hồ sơ cá nhân</font></a>
         </li>
     </ul>
 }
-<!-- Main content -->
-<section class="content">
 
-    <!-- Default box -->
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Cập nhật tài khoản</h3>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
 
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle"
+                                     src="@Html.DisplayFor(model => model.Images)"
+                                     alt="User profile picture">
+                            </div>
 
-        </div>
-        <div class="card-body">
-            @using (Html.BeginForm("Edit", "Account", FormMethod.Post))
-            {
-                @Html.ValidationSummary(false)
-                @Html.AntiForgeryToken()
-               
-                <div class="form-group">
-                    <label>Tên tài khoản</label>
-                    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.UserName, null, new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label>Họ tên</label>
-                    @Html.TextBoxFor(x => x.FullName, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
-                </div>
+                            <h3 class="profile-username text-center">@Html.DisplayFor(model => model.UserName)</h3>
 
-                <div class="form-group">
-                    <label>Năm sinh</label>
-                    @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.DateOfBirth, null, new { @class = "text-danger" })
-                </div>
+                            <p class="text-muted text-center">@Html.DisplayFor(model => model.FullName)</p>
 
-                <div class="form-group">
-                    <label>Giới tính</label>
-                    @Html.TextBoxFor(x => x.Sex, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Sex, null, new { @class = "text-danger" })
-                </div>
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Năm sinh:</b> <a class="float-right">@Html.DisplayFor(model => model.DateOfBirth)</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Giới tính</b> <a class="float-right">@Html.DisplayFor(model => model.Sex)</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Phone:</b> <a class="float-right">@Html.DisplayFor(model => model.Phone)</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Email:</b> <a class="float-right">@Html.DisplayFor(model => model.Email)</a>
+                                </li>
 
-                <div class="form-group">
-                    <label>Hình đại diện</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            @Html.EditorFor(model => model.Images, "Hình ảnh", new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+                            </ul>
                         </div>
-                        <div class="input-group-append">
-                            <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
-                                   style="display:none;" />
-                            <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
-
-                        </div>
+                        <!-- /.card-body -->
                     </div>
+                    <!-- /.card -->
+                    <!-- About Me Box -->
+                    <!-- /.card -->
                 </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <h1 class="btn btn-lg btn-primary">HỒ SƠ</h1>
+                            <!--<ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                                            </ul>-->
+                        </div> <!--/.card-header -->
+                        <div class="card-body">
+                            @using (Html.BeginForm("Edit", "Account", FormMethod.Post))
+                            {
+                                @Html.ValidationSummary(false)
+                                @Html.AntiForgeryToken()
+                                <form class="form-horizontal" action="@Url.Action("Edit", "Account", new { account = Model as ApplicationUser})">
+                                    <div class="form-group row">
+                                        <label for="inputName" class="col-sm-2 col-form-label">Tên tài khoản</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Tên tài khoản" })
+                                            @Html.ValidationMessageFor(x => x.UserName, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputName" class="col-sm-2 col-form-label">Họ và Tên</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "Họ tên" })
+                                            @Html.ValidationMessageFor(x => x.FullName, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputBirth" class="col-sm-2 col-form-label">Năm sinh</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control", @placeholder = "Năm sinh" })
+                                            @Html.ValidationMessageFor(x => x.DateOfBirth, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputSex" class="col-sm-2 col-form-label">Giới tính</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(model => model.Sex, new { @class = "form-control", @placeholder = "Giới tính" })
+                                            @Html.ValidationMessageFor(x => x.Sex, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputPhone" class="col-sm-2 col-form-label">Số điện thoại</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Số điện thoại" })
+                                            @Html.ValidationMessageFor(x => x.Phone, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+                                            @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputEmail" class="col-sm-2 col-form-label">Ảnh đại diện</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                @Html.EditorFor(model => model.Images, "Ảnh đại diện", new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="input-group-append">
+                                                <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                                                       style="display:none;" />
+                                                <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button type="submit" class="btn btn-danger">Lưu</button>
+                                        </div>
+                                    </div>
 
 
-                <div class="form-group">
-                    <label>Phone</label>
-                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Phone, null, new { @class = "text-danger" })
+                                </form>
+                            }
+                            <!--</div>
+                            /.tab-pane -->
+                            <!--</div>
+                            /.tab-content -->
+                        </div><!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
                 </div>
-
-                
-
-                <div class="form-group">
-                    <label>Chức vụ</label>
-                    @Html.DropDownList("Role", ViewBag.Role as SelectList, "-- Chọn quyền --", new { @class = "form-control" })
-
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Cập nhật</button>
-                </div>
-            }
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-
-        </div>
-        <!-- /.card-footer-->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
     </div>
-    <!-- /.card -->
 
-</section>
-<!-- /.content -->
+
 @section upload
 {
     <script>
-    $(function () {
-        $('#btnUpload').click(function () {
-            $('#fileUpload').trigger('click');
+        $(function () {
+            $('#btnUpload').click(function () {
+                $('#fileUpload').trigger('click');
+            });
         });
-    });
-    $('#fileUpload').change(function () {
-        if (window.FormData !== undefined) {
-            var fileUpload = $('#fileUpload').get(0);
-            var files = fileUpload.files;
-            var formData = new FormData();
-            formData.append('file', files[0]);
-            $.ajax(
-                {
-                    type: 'POST',
-                    url: '/Admin/Account/ProcessUpload',
-                    contentType: false,
-                    processData: false,
-                    data: formData,
-                    success: function (urlImage) {
-                        $('#pictureUpload').attr('src', urlImage);
-                        $('#Images').val(urlImage);
-                    },
-                    error: function (err) {
-                        alert('Error ', err.statusText);
-                    }
-                });
-        }
-    });
+        $('#fileUpload').change(function () {
+            if (window.FormData !== undefined) {
+                var fileUpload = $('#fileUpload').get(0);
+                var files = fileUpload.files;
+                var formData = new FormData();
+                formData.append('file', files[0]);
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: '/Account/ProcessUpload',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (urlImage) {
+                            $('#pictureUpload').attr('src', urlImage);
+                            $('#Images').val(urlImage);
+                        },
+                        error: function (err) {
+                            alert('Error ', err.statusText);
+                        }
+                    });
+            }
+        });
     </script>
 }
 

@@ -75,6 +75,7 @@ namespace BookGrotto.Models
 
         public DateTime DateOfBirth { get; set; }
         public string Sex { get; set; }
+        public bool LockoutEnabled { get; set; }
         public string Phone { get; set; }
         public string Role { get; set; }
         [Required]
@@ -92,6 +93,7 @@ namespace BookGrotto.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+       
     }
 
     public class RegisterViewModel

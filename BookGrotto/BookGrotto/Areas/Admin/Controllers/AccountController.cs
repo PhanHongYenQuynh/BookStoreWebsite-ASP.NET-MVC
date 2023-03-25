@@ -103,8 +103,22 @@ namespace BookGrotto.Areas.Admin.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    {
+                        var user = await UserManager.FindAsync(model.UserName, model.Password);
+                        user.LockoutEndDateUtc= DateTime.UtcNow;
+                        UserManager.Update(user);
+                    }
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
+                    {
+                        var user = await UserManager.FindAsync(model.UserName, model.Password);
+                        if(user.EmailConfirmed==false)
+                        {
+                            user.LockoutEnabled= true;
+                            UserManager.Update(user);
+                        }
+                    }
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
@@ -200,7 +214,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                 _user.DateOfBirth=model.DateOfBirth;
                 _user.Sex=model.Sex;
                 _user.LockoutEnabled=model.LockoutEnabled;
-               
+              
                 var result = await UserManager.UpdateAsync(_user);
                 if (result.Succeeded)
                 {

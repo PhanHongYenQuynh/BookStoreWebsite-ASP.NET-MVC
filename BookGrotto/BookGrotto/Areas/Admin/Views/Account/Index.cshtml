@@ -42,7 +42,7 @@
                         <th>Email</th>
                         <th>Năm sinh</th>
                         <th>Giới tính</th>
-
+                        <th>Thời gian đăng nhập</th>
                         <th>Kích hoạt</th>
 
                         <th></th>
@@ -62,7 +62,7 @@
                                 <td>@item.Email</td>
                                 <td>@item.DateOfBirth</td>
                                 <td>@item.Sex</td>
-                               
+                                <td>@item.LockoutEndDateUtc</td>
                                 <td>@(item.LockoutEnabled)</td>
                                 <td>
                                     <a href="/admin/account/Edit/@item.Id" class="btn btn-sm btn-primary">Cập nhật</a>

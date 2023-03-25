@@ -1,5 +1,7 @@
 ﻿@model BookGrotto.Models.ApplicationUser
+
 @using BookGrotto.Models
+
 @{
     ViewBag.Title = "Profile";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -21,64 +23,65 @@
     </ul>
 }
 
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
 
-                    <!-- Profile Image -->
-                    <div class="card card-primary card-outline">
-                        <div class="card-body box-profile">
-                            <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle"
-                                     src="@Html.DisplayFor(model => model.Images)"
-                                     alt="User profile picture">
-                            </div>
-
-                            <h3 class="profile-username text-center">@Html.DisplayFor(model => model.UserName)</h3>
-
-                            <p class="text-muted text-center">@Html.DisplayFor(model => model.FullName)</p>
-
-                            <ul class="list-group list-group-unbordered mb-3">
-                                <li class="list-group-item">
-                                    <b>Năm sinh:</b> <a class="float-right">@Html.DisplayFor(model => model.DateOfBirth)</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Giới tính</b> <a class="float-right">@Html.DisplayFor(model => model.Sex)</a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <b>Phone:</b> <a class="float-right">@Html.DisplayFor(model => model.Phone)</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Email:</b> <a class="float-right">@Html.DisplayFor(model => model.Email)</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Kích hoạt:</b> <a class="float-right">@Html.DisplayFor(model => model.LockoutEnabled)</a>
-                                </li>
-
-                            </ul>
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="@Html.DisplayFor(model => model.Images)"
+                                 alt="User profile picture">
                         </div>
-                        <!-- /.card-body -->
+
+                        <h3 class="profile-username text-center">@Html.DisplayFor(model => model.UserName)</h3>
+
+                        <p class="text-muted text-center">@Html.DisplayFor(model => model.FullName)</p>
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Năm sinh:</b> <a class="float-right">@Html.DisplayFor(model => model.DateOfBirth)</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Giới tính</b> <a class="float-right">@Html.DisplayFor(model => model.Sex)</a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <b>Phone:</b> <a class="float-right">@Html.DisplayFor(model => model.Phone)</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Email:</b> <a class="float-right">@Html.DisplayFor(model => model.Email)</a>
+                            </li>
+                           
+                            <li class="list-group-item">
+                                <b>Kích hoạt:</b> <a class="float-right">@Html.DisplayFor(model => model.LockoutEnabled)</a>
+                            </li>
+
+                        </ul>
                     </div>
-                    <!-- /.card -->
-                    <!-- About Me Box -->
-                    <!-- /.card -->
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.col -->
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-header p-2">
-                            <h1 class="btn btn-lg btn-primary">HỒ SƠ</h1>
-                            <!--<ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
-                                            </ul>-->
-                        </div> <!--/.card-header -->
-                        <div class="card-body">
-                            @using (Html.BeginForm("Edit", "Account", FormMethod.Post))
-                            {
-                                @Html.ValidationSummary(false)
-                                @Html.AntiForgeryToken()
+                <!-- /.card -->
+                <!-- About Me Box -->
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <h1 class="btn btn-lg btn-primary">HỒ SƠ</h1>
+                        <!--<ul class="nav nav-pills">
+                        <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                                        </ul>-->
+                    </div> <!--/.card-header -->
+                    <div class="card-body">
+                        @using (Html.BeginForm("Edit", "Account", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary(false)
+                            @Html.AntiForgeryToken()
                             <form class="form-horizontal" action="@Url.Action("Edit", "Account", new { account = Model as ApplicationUser})">
                                 <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Tên tài khoản</label>
@@ -106,6 +109,13 @@
                                     <div class="col-sm-10">
                                         @Html.TextBoxFor(model => model.Sex, new { @class = "form-control", @placeholder = "Giới tính" })
                                         @Html.ValidationMessageFor(x => x.Sex, null, new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputSex" class="col-sm-2 col-form-label">Chức vụ</label>
+                                    <div class="col-sm-10">
+                                        @Html.DropDownList("Role", ViewBag.Role as SelectList, "-- Chọn quyền --", new { @class = "form-control" })
                                     </div>
                                 </div>
 
@@ -166,20 +176,20 @@
 
 
                             </form>
-                            }
-                            <!--</div>
-                            /.tab-pane -->
-                            <!--</div>
-                            /.tab-content -->
-                        </div><!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
+                        }
+                        <!--</div>
+                        /.tab-pane -->
+                        <!--</div>
+                        /.tab-content -->
+                    </div><!-- /.card-body -->
                 </div>
-                <!-- /.col -->
+                <!-- /.card -->
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
 
 
 @section upload

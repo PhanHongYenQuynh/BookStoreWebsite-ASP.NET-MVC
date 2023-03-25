@@ -1068,3 +1068,5 @@ E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\Boo
 E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.dll
 E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.pdb
 E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateCreateViewModel.resources
+E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateApplicationUser2.resources
+E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateApplicationUser3.resources

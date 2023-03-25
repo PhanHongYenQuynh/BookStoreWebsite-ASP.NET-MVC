@@ -105,7 +105,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                 case SignInStatus.Success:
                     {
                         var user = await UserManager.FindAsync(model.UserName, model.Password);
-                        user.LockoutEndDateUtc= DateTime.UtcNow;
+                        user.LockoutEndDateUtc= DateTime.Now;
                         UserManager.Update(user);
                     }
 
@@ -184,6 +184,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                 }
                 AddErrors(result);
             }
+            
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name");
             // If we got this far, something failed, redisplay form
             return View(model);

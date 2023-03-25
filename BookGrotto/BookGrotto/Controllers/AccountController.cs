@@ -89,7 +89,7 @@ namespace BookGrotto.Controllers
                 case SignInStatus.Success:
                     {
                         var user = await UserManager.FindAsync(model.UserName, model.Password);
-                        user.LockoutEndDateUtc= DateTime.UtcNow;
+                        user.LockoutEndDateUtc= DateTime.Now;
                         UserManager.Update(user);
                     }
 

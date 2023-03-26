@@ -40,7 +40,7 @@ namespace BookGrotto.Areas.Admin.Controllers
             return View(model);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             var item = db.Roles.Find(id);
             return View(item);
@@ -48,15 +48,30 @@ namespace BookGrotto.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(IdentityUser model)
+        public async Task<ActionResult> Edit(string id, IdentityRole model)
         {
             if (ModelState.IsValid)
             {
-                var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(db));
-                userManager.Update(model);
-                return RedirectToAction("Index");
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+                var role = await roleManager.FindByIdAsync(id);
+                if (role == null)
+                {
+                    return HttpNotFound();
+                }
+                role.Name = model.Name;
+                var result = await roleManager.UpdateAsync(role);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Không thể cập nhật quyền!.");
+                }
             }
             return View(model);
         }
+
+        //Fix This code Public ActionResult please
     }
 }

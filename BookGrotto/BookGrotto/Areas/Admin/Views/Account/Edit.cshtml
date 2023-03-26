@@ -1,5 +1,5 @@
 ﻿@model BookGrotto.Models.ApplicationUser
-
+@using Microsoft.AspNet.Identity
 @using BookGrotto.Models
 
 @{
@@ -55,7 +55,10 @@
                             <li class="list-group-item">
                                 <b>Email:</b> <a class="float-right">@Html.DisplayFor(model => model.Email)</a>
                             </li>
-                           
+                            <li class="list-group-item">
+                                <b>Chức vụ:</b> <a class="float-right">@string.Join(",", ViewBag.Role)</a> <!--Fix this one how to display Role's Name'--->
+                            </li>
+
                             <li class="list-group-item">
                                 <b>Khoá tài khoản:</b> <a class="float-right">@Html.DisplayFor(model => model.LockoutEnabled)</a>
                             </li>

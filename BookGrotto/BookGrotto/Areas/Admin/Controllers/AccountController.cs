@@ -205,7 +205,7 @@ namespace BookGrotto.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ApplicationUser model, string role)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 var _user = await UserManager.FindByNameAsync(model.UserName);
                 _user.FullName=model.FullName;
@@ -215,18 +215,22 @@ namespace BookGrotto.Areas.Admin.Controllers
                 _user.DateOfBirth=model.DateOfBirth;
                 _user.Sex=model.Sex;
                 _user.LockoutEnabled=model.LockoutEnabled;
-              
+
                 var result = await UserManager.UpdateAsync(_user);
                 if (result.Succeeded)
                 {
-
                     if (!string.IsNullOrEmpty(role))
-                        UserManager.AddToRole(_user.Id, role);
+                    {
+                        var roles = await UserManager.GetRolesAsync(_user.Id);
+                        await UserManager.RemoveFromRolesAsync(_user.Id, roles.ToArray());
+                        await UserManager.AddToRoleAsync(_user.Id, role);
+                    }
                     return RedirectToAction("Index", "Account");
                 }
                 AddErrors(result);
             }
-            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name");
+
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
             // If we got this far, something failed, redisplay form
             return View(model);
         }

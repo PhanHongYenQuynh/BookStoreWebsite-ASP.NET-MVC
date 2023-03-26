@@ -1,11 +1,29 @@
 ﻿@model BookGrotto.Models.ApplicationUser
 @using Microsoft.AspNet.Identity
 @using BookGrotto.Models
+@using System.Security.Claims;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using System.Linq;
 
 @{
     ViewBag.Title = "Profile";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
+
+@{
+    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var userId = User.Identity.GetUserId();
+    var user = userManager.FindById(userId);
+    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+    var roleName = roleManager.FindById(user.Roles.First().RoleId).Name;
+
+    ViewBag.RoleName = roleName;
+    @*var userRoles = ((ClaimsIdentity)User.Identity).Claims
+            .Where(c => c.Type == ClaimTypes.Role)
+            .Select(c => c.Value);*@
+}
+
 
 @section naviheader
 {
@@ -18,7 +36,7 @@
             <a href="/admin/home" class="nav-link"><font color="white">Trang chủ</font></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/account" class="nav-link"><font color="white">Hồ sơ cá nhân</font></a>
+            <a href="/admin/account" class="nav-link"><font color="white">Danh sách tài khoản</font></a>
         </li>
     </ul>
 }
@@ -56,7 +74,7 @@
                                 <b>Email:</b> <a class="float-right">@Html.DisplayFor(model => model.Email)</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Chức vụ:</b> <a class="float-right">@string.Join(",", ViewBag.Role)</a> <!--Fix this one how to display Role's Name'--->
+                                <b>Chức vụ:</b> <a class="float-right">@ViewBag.RoleName</a> <!--Fix this one how to display Role's Name'---> <!---Don't use usermanager or await'-->
                             </li>
 
                             <li class="list-group-item">

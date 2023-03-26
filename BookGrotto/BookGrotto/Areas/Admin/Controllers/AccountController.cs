@@ -229,6 +229,7 @@ namespace BookGrotto.Areas.Admin.Controllers
                 }
                 AddErrors(result);
             }
+
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
             // If we got this far, something failed, redisplay form
             return View(model);

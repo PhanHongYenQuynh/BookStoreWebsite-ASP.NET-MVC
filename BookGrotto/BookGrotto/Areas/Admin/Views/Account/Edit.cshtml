@@ -12,16 +12,10 @@
 
 
 @{
-    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-    var userId = User.Identity.GetUserId();
-    var user = userManager.FindById(userId);
-    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-    var roleName = roleManager.FindById(user.Roles.First().RoleId).Name;
-
-    ViewBag.RoleName = roleName;
-    @*var userRoles = ((ClaimsIdentity)User.Identity).Claims
+   
+    var userRoles = ((ClaimsIdentity)User.Identity).Claims
             .Where(c => c.Type == ClaimTypes.Role)
-            .Select(c => c.Value);*@
+            .Select(c => c.Value);
 }
 
 
@@ -74,7 +68,7 @@
                                 <b>Email:</b> <a class="float-right">@Html.DisplayFor(model => model.Email)</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Chức vụ:</b> <a class="float-right">@ViewBag.RoleName</a> <!--Fix this one how to display Role's Name'---> <!---Don't use usermanager or await'-->
+                                <b>Chức vụ:</b> <a class="float-right">@string.Join(",", userRoles)</a> <!--Fix this one how to display Role's Name'---> <!---Don't use usermanager or await'-->
                             </li>
 
                             <li class="list-group-item">

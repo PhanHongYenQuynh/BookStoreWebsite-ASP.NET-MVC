@@ -87,8 +87,22 @@ namespace BookGrotto.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    {
+                        var user = await UserManager.FindAsync(model.UserName, model.Password);
+                        user.LockoutEndDateUtc= DateTime.Now;
+                        UserManager.Update(user);
+                    }
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
+                    {
+                        var user = await UserManager.FindAsync(model.UserName, model.Password);
+                        if (user.EmailConfirmed==false)
+                        {
+                            user.LockoutEnabled= true;
+                            UserManager.Update(user);
+                        }
+                    }
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
@@ -114,7 +128,7 @@ namespace BookGrotto.Controllers
         public async Task<ActionResult> Profile(string id)
         {
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
-            var _user = await UserManager.FindByIdAsync(id);
+            var _user = await UserManager.FindByNameAsync(id);
             return View(_user);
         }
 

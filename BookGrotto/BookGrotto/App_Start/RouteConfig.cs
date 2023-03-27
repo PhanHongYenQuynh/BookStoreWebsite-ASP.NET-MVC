@@ -42,6 +42,9 @@ namespace BookGrotto
               defaults: new { controller = "Products", action = "ProductCategory", id = UrlParameter.Optional },
               namespaces: new[] { "BookGrotto.Controllers" }
           );
+
+            
+
             routes.MapRoute(
                name: "detailProducts",
                url: "chi-tiet/{alias}-p{id}",
@@ -50,7 +53,7 @@ namespace BookGrotto
            );
             routes.MapRoute(
                name: "Products",
-               url: "danh-muc-san-pham/san-pham",
+               url: "san-pham",
                defaults: new { controller = "Products", action = "Index", alias = UrlParameter.Optional },
                namespaces: new[] { "BookGrotto.Controllers" }
 
@@ -76,6 +79,15 @@ namespace BookGrotto
                namespaces: new[] { "BookGrotto.Controllers" }
 
             );
+
+            routes.MapRoute(
+               name: "DetailPosts",
+               url: "bai-viet/{alias}-n{id}",
+               defaults: new { controller = "Posts", action = "Detail", id = UrlParameter.Optional },
+               namespaces: new[] { "BookGrotto.Controllers" }
+
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

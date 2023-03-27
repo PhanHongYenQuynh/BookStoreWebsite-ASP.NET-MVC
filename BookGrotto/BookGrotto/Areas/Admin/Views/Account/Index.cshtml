@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<BookGrotto.Models.ApplicationUser>
+
 @{
     ViewBag.Title = "Quản lý tài khoản";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -41,14 +42,16 @@
                         <th>Email</th>
                         <th>Năm sinh</th>
                         <th>Giới tính</th>
-                        <th>Kích hoạt</th>
-                        
+                        <th>Thời gian</th>
+                        <th>Khoá</th>
+
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
+                       
                         var i = 1;
                         foreach (var item in Model)
                         {
@@ -60,6 +63,7 @@
                                 <td>@item.Email</td>
                                 <td>@item.DateOfBirth</td>
                                 <td>@item.Sex</td>
+                                <td>@item.LockoutEndDateUtc</td>
                                 <td>@(item.LockoutEnabled)</td>
                                 <td>
                                     <a href="/admin/account/Edit/@item.Id" class="btn btn-sm btn-primary">Cập nhật</a>

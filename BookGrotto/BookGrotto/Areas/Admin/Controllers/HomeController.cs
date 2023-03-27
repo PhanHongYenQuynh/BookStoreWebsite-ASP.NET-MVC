@@ -21,6 +21,7 @@ namespace BookGrotto.Areas.Admin.Controllers
             ViewBag.Products = db.Products.Count();
             ViewBag.Posts = db.Posts.Count();
             ViewBag.News = db.News.Count();
+            
             return View();
         }
     }

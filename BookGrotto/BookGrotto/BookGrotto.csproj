@@ -195,6 +195,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingSystemController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticalController.cs" />
@@ -215,6 +216,18 @@
     <Compile Include="Migrations\202303230737457_createdatabase.cs" />
     <Compile Include="Migrations\202303230737457_createdatabase.designer.cs">
       <DependentUpon>202303230737457_createdatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303241529282_UpdateCreateViewModel.cs" />
+    <Compile Include="Migrations\202303241529282_UpdateCreateViewModel.designer.cs">
+      <DependentUpon>202303241529282_UpdateCreateViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303250941165_UpdateApplicationUser2.cs" />
+    <Compile Include="Migrations\202303250941165_UpdateApplicationUser2.designer.cs">
+      <DependentUpon>202303250941165_UpdateApplicationUser2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303250950031_UpdateApplicationUser3.cs" />
+    <Compile Include="Migrations\202303250950031_UpdateApplicationUser3.designer.cs">
+      <DependentUpon>202303250950031_UpdateApplicationUser3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3297,6 +3310,9 @@
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.ttf" />
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.woff" />
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Profile\Profile.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Lockout.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3397,6 +3413,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202303230737457_createdatabase.resx">
       <DependentUpon>202303230737457_createdatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303241529282_UpdateCreateViewModel.resx">
+      <DependentUpon>202303241529282_UpdateCreateViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303250941165_UpdateApplicationUser2.resx">
+      <DependentUpon>202303250941165_UpdateApplicationUser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303250950031_UpdateApplicationUser3.resx">
+      <DependentUpon>202303250950031_UpdateApplicationUser3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -92,7 +92,14 @@
                         <span id="quantity_value">1</span>
                         <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
                     </div>
-                    <div class="red_button add_to_cart_button"><a href="#"class="btnAddToCart" data-id="@Model.Id">add to cart</a></div>
+                    @if (Model.Quantity <= 0)
+                    {
+                        <div class="red_button add_to_cart_button"><a href="#" data-id="@Model.Id">Hết Hàng</a></div>
+                    }
+                    else
+                    {
+                        <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@Model.Id">Thêm vào giỏ hàng</a></div>
+                    }
                     <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
                 </div>
             </div>

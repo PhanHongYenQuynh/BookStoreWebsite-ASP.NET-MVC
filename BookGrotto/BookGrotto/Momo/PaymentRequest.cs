@@ -8,7 +8,7 @@ using System.Web;
 
 namespace BookGrotto.Momo
 {
-    public class PaymentRequest
+    class PaymentRequest
     {
         public PaymentRequest()
         {

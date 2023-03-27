@@ -931,17 +931,11 @@ C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\Mic
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.AssemblyReference.cache
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.CreatedDatabase.resources
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateProduct.resources
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.Update.resources
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.GenerateResource.cache
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.CoreCompileInputs.cache
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.csproj.CopyComplete
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.dll
 C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.pdb
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.CreateTBThongKe.resources
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateApplicationUser.resources
-C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateApplicationUser1.resources
 E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\BookGrotto.dll.config
 E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\BookGrotto.dll
 E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\bin\BookGrotto.pdb
@@ -1070,3 +1064,7 @@ E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\Boo
 E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateCreateViewModel.resources
 E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateApplicationUser2.resources
 E:\TAI LIEU HOC\BAI GIANG\Lap trinh web\PROJECT\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateApplicationUser3.resources
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.createdatabase.resources
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateCreateViewModel.resources
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateApplicationUser2.resources
+C:\Users\ACER\Desktop\BookStoreWebsite-ASP.NET-MVC\BookGrotto\BookGrotto\obj\Debug\BookGrotto.Migrations.UpdateApplicationUser3.resources

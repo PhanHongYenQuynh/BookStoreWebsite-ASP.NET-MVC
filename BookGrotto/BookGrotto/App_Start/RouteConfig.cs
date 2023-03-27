@@ -80,7 +80,13 @@ namespace BookGrotto
 
             );
 
-           
+            routes.MapRoute(
+               name: "DetailPosts",
+               url: "bai-viet/{alias}-n{id}",
+               defaults: new { controller = "Posts", action = "Detail", id = UrlParameter.Optional },
+               namespaces: new[] { "BookGrotto.Controllers" }
+
+            );
 
             routes.MapRoute(
                 name: "Default",

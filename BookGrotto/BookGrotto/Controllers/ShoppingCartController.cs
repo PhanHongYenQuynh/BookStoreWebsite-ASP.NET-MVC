@@ -249,7 +249,7 @@ namespace BookGrotto.Controllers
             }));
             order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity));
             //request params need to request to MoMo system
-            string endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+            string endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
             string partnerCode = "MOMOJMUD20220907";
             string accessKey = "4P1sX4jWK4RhExaX";
             string serectkey = "FcnI5hgWY9fkaf5rNRNrR8Ugrq7LaRCw";

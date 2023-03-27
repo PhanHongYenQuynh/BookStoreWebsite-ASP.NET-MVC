@@ -166,7 +166,14 @@
                                                     }
                                                 </div>
                                             </div>
-                                            <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">Thêm vào giỏ hàng</a></div>
+                                            @if (item.Quantity <= 0)
+                                            {
+                                                <div class="red_button add_to_cart_button"><a href="#" data-id="@item.Id">Hết Hàng</a></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">Thêm vào giỏ hàng</a></div>
+                                            }
                                         </div>
                                     }
                                 }

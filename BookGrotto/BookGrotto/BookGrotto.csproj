@@ -3391,6 +3391,10 @@
     <Content Include="Views\ShoppingCart\PaymentMomo.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Products\SortByName.cshtml" />
+    <Content Include="Views\Products\SortByNameZA.cshtml" />
+    <Content Include="Views\Products\SortByPrice.cshtml" />
+    <Content Include="Views\Products\SortByPriceGiam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

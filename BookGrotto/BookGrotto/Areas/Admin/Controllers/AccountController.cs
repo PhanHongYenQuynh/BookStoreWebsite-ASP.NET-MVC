@@ -195,6 +195,11 @@ namespace BookGrotto.Areas.Admin.Controllers
         {
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
             var _user = await UserManager.FindByIdAsync(id);
+
+            var roles = await UserManager.GetRolesAsync(_user.Id);
+
+            ViewBag.Roles = roles;
+            
             return View(_user);
         }
 
@@ -216,6 +221,8 @@ namespace BookGrotto.Areas.Admin.Controllers
                 _user.Sex=model.Sex;
                 _user.LockoutEnabled=model.LockoutEnabled;
 
+                
+
                 var result = await UserManager.UpdateAsync(_user);
                 if (result.Succeeded)
                 {
@@ -230,7 +237,10 @@ namespace BookGrotto.Areas.Admin.Controllers
                 AddErrors(result);
             }
 
+            
+
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
+            
             // If we got this far, something failed, redisplay form
             return View(model);
         }

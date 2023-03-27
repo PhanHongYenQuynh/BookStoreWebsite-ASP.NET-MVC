@@ -54,6 +54,130 @@ namespace BookGrotto.Controllers
             ViewBag.Page = page;
             return View(items);
         }
+        public ActionResult SortByName(string Searchtext)
+        {
+            IEnumerable<Product> items = db.Products.OrderBy(x => x.Title).ToList();
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                char[] charArray = Searchtext.ToCharArray();
+                bool foundSpace = true;
+                //sử dụng vòng lặp for lặp từng phần tử trong mảng
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    //sử dụng phương thức IsLetter() để kiểm tra từng phần tử có phải là một chữ cái
+                    if (Char.IsLetter(charArray[i]))
+                    {
+                        if (foundSpace)
+                        {
+                            //nếu phải thì sử dụng phương thức ToUpper() để in hoa ký tự đầu
+                            charArray[i] = Char.ToUpper(charArray[i]);
+                            foundSpace = false;
+                        }
+                    }
+                    else
+                    {
+                        foundSpace = true;
+                    }
+                }
+                //chuyển đổi kiểu mảng char thàng string
+                Searchtext = new string(charArray);
+                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext));
+            }
+            return View(items);
+        }
+        public ActionResult SortByPrice(string Searchtext)
+        {
+            IEnumerable<Product> items = db.Products.OrderBy(x => x.Price).ToList();
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                char[] charArray = Searchtext.ToCharArray();
+                bool foundSpace = true;
+                //sử dụng vòng lặp for lặp từng phần tử trong mảng
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    //sử dụng phương thức IsLetter() để kiểm tra từng phần tử có phải là một chữ cái
+                    if (Char.IsLetter(charArray[i]))
+                    {
+                        if (foundSpace)
+                        {
+                            //nếu phải thì sử dụng phương thức ToUpper() để in hoa ký tự đầu
+                            charArray[i] = Char.ToUpper(charArray[i]);
+                            foundSpace = false;
+                        }
+                    }
+                    else
+                    {
+                        foundSpace = true;
+                    }
+                }
+                //chuyển đổi kiểu mảng char thàng string
+                Searchtext = new string(charArray);
+                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext));
+            }
+            return View(items);
+        }
+        public ActionResult SortByPriceGiam(string Searchtext)
+        {
+            IEnumerable<Product> items = db.Products.OrderByDescending(x => x.Price).ToList();
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                char[] charArray = Searchtext.ToCharArray();
+                bool foundSpace = true;
+                //sử dụng vòng lặp for lặp từng phần tử trong mảng
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    //sử dụng phương thức IsLetter() để kiểm tra từng phần tử có phải là một chữ cái
+                    if (Char.IsLetter(charArray[i]))
+                    {
+                        if (foundSpace)
+                        {
+                            //nếu phải thì sử dụng phương thức ToUpper() để in hoa ký tự đầu
+                            charArray[i] = Char.ToUpper(charArray[i]);
+                            foundSpace = false;
+                        }
+                    }
+                    else
+                    {
+                        foundSpace = true;
+                    }
+                }
+                //chuyển đổi kiểu mảng char thàng string
+                Searchtext = new string(charArray);
+                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext));
+            }
+            return View(items);
+        }
+        public ActionResult SortByNameZA(string Searchtext)
+        {
+            IEnumerable<Product> items = db.Products.OrderByDescending(x => x.Title).ToList();
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                char[] charArray = Searchtext.ToCharArray();
+                bool foundSpace = true;
+                //sử dụng vòng lặp for lặp từng phần tử trong mảng
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    //sử dụng phương thức IsLetter() để kiểm tra từng phần tử có phải là một chữ cái
+                    if (Char.IsLetter(charArray[i]))
+                    {
+                        if (foundSpace)
+                        {
+                            //nếu phải thì sử dụng phương thức ToUpper() để in hoa ký tự đầu
+                            charArray[i] = Char.ToUpper(charArray[i]);
+                            foundSpace = false;
+                        }
+                    }
+                    else
+                    {
+                        foundSpace = true;
+                    }
+                }
+                //chuyển đổi kiểu mảng char thàng string
+                Searchtext = new string(charArray);
+                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext));
+            }
+            return View(items);
+        }
         public ActionResult Detail(string alias, int id)
         {
             var item = db.Products.Find(id);

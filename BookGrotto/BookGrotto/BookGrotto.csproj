@@ -212,29 +212,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302240824051_CreatedDatabase.cs" />
-    <Compile Include="Migrations\202302240824051_CreatedDatabase.designer.cs">
-      <DependentUpon>202302240824051_CreatedDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202302260243035_UpdateProduct.cs" />
-    <Compile Include="Migrations\202302260243035_UpdateProduct.designer.cs">
-      <DependentUpon>202302260243035_UpdateProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202303070305377_Update.cs" />
-    <Compile Include="Migrations\202303070305377_Update.designer.cs">
-      <DependentUpon>202303070305377_Update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202303211336304_CreateTBThongKe.cs" />
-    <Compile Include="Migrations\202303211336304_CreateTBThongKe.designer.cs">
-      <DependentUpon>202303211336304_CreateTBThongKe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202303222343176_UpdateApplicationUser.cs" />
-    <Compile Include="Migrations\202303222343176_UpdateApplicationUser.designer.cs">
-      <DependentUpon>202303222343176_UpdateApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202303230112242_UpdateApplicationUser1.cs" />
-    <Compile Include="Migrations\202303230112242_UpdateApplicationUser1.designer.cs">
-      <DependentUpon>202303230112242_UpdateApplicationUser1.cs</DependentUpon>
+    <Compile Include="Migrations\202303230737457_createdatabase.cs" />
+    <Compile Include="Migrations\202303230737457_createdatabase.designer.cs">
+      <DependentUpon>202303230737457_createdatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3415,23 +3395,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202302240824051_CreatedDatabase.resx">
-      <DependentUpon>202302240824051_CreatedDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202302260243035_UpdateProduct.resx">
-      <DependentUpon>202302260243035_UpdateProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202303070305377_Update.resx">
-      <DependentUpon>202303070305377_Update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202303211336304_CreateTBThongKe.resx">
-      <DependentUpon>202303211336304_CreateTBThongKe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202303222343176_UpdateApplicationUser.resx">
-      <DependentUpon>202303222343176_UpdateApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202303230112242_UpdateApplicationUser1.resx">
-      <DependentUpon>202303230112242_UpdateApplicationUser1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202303230737457_createdatabase.resx">
+      <DependentUpon>202303230737457_createdatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
